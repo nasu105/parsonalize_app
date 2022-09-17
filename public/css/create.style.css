@@ -1,0 +1,74 @@
+/* .btnspinner{
+	-ms-user-select: none;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.spinner_area input{
+	padding: 11px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 18px;
+	width: auto;
+	vertical-align: middle; */
+
+	/* デフォルトのスピナーを消す */
+	/* -webkit-appearance: none;
+	-moz-appearance:textfield;
+} */
+
+/* .spinner_area input[type="button"]{
+	cursor: pointer;
+}  */
+
+input[type="number"] {
+	width: 8em;
+	text-align: center;
+	padding-right: 3px;
+}
+
+input[type="button"] {
+	font-size: 150%;
+}
+
+.btnspinner {
+	width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+	border: 1px solid #1a1a1a;
+  background: #fff;
+}
+
+.btnspinner:hover {
+	color: #fff;
+  background: #000;
+}
+
+
+
+.relax_content {
+	padding:24px 0 0 24px;
+}
+
+.inflammation_content {
+	padding:24px 0 0 24px;
+}
+
+.paschoactive_content {
+	padding:24px 0 0 24px;
+}
+
+.vitality_content {
+	padding:24px 0 0 24px;
+}
+
+.headache_content {
+	padding:24px 0 0 24px;
+}
+
+.insomnia_content {
+	padding: 24px 0 24px 24px;
+}
