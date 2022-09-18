@@ -36,7 +36,7 @@ function maxIndex(a) {
 }
 
 $(function () {
-      
+
   let arySpinnerCtrl = [];
   let spin_speed = 20; //変動スピード
 
@@ -61,7 +61,7 @@ $(function () {
       }
     }, 500);
   });
-  
+
   //長押し解除時 画面スクロールも解除に含む
   $(document).on('touchend mouseup scroll', function (e) {
     if (arySpinnerCtrl['interval']) {
@@ -70,22 +70,22 @@ $(function () {
     }
   });
 
-/*   const a = Number($('#relax').val());
-  const b = Number($('#inflammaiton').val());
-  const c = Number($('#paschoactive').val());
-  const d = Number($('#vitality').val());
-  const e = Number($('#headache').val());
-  const f = Number($('#insomnia').val());
-  const parameter_array = [a, b, c, d, e, f];
-  const parameter_sum = parameter_array.reduce((a, b) => {
-  return a + b;
-  }); */
+  /*   const a = Number($('#relax').val());
+    const b = Number($('#inflammaiton').val());
+    const c = Number($('#paschoactive').val());
+    const d = Number($('#vitality').val());
+    const e = Number($('#headache').val());
+    const f = Number($('#insomnia').val());
+    const parameter_array = [a, b, c, d, e, f];
+    const parameter_sum = parameter_array.reduce((a, b) => {
+    return a + b;
+    }); */
 
   //変動計算関数
   function spinnerCal() {
     let target = $(arySpinnerCtrl['target']);
+    // let target = arySpinnerCtrl['target'];
     let num = Number(target.val());
-    console.log(num);
     num = num + arySpinnerCtrl['cal'];
 
     // if (num > Number(target.data('max'))) {
@@ -129,133 +129,159 @@ $(function () {
     if (relax_plus_button && inflammation_num > 0) { // リラックスプラスボタン押した時
       inflammation_num -= 1;
       $('#inflammation').val(inflammation_num);
-      target.val(num);
-      console.log(target.val(num));
-      console.log(relax_num);
-      console.log(target);
-      console.log(arySpinnerCtrl);
-      console.log(num);
+      relax_num += 1;
+      $('#relax').val(relax_num);
     } else if (relax_plus_button && inflammation_num == 0 && headache_num > 0) {
       headache_num -= 1;
       $('#headache').val(headache_num);
-      target.val(num);
+      relax_num += 1;
+      $('#relax').val(relax_num);
     } else if (relax_plus_button && inflammation_num == 0 && headache_num == 0 && paschoactive_num > 0) {
       paschoactive_num -= 1;
       $('#paschoactive').val(paschoactive_num);
-      target.val(num);
+      relax_num += 1;
+      $('#relax').val(relax_num);
     } else if (relax_plus_button && inflammation_num == 0 && headache_num == 0 && paschoactive_num == 0 && insomnia_num > 0) {
       insomnia_num -= 1;
       $('#insomnia').val(insomnia_num);
-      target.val(num);
+      relax_num += 1;
+      $('#relax').val(relax_num);
     } else if (relax_plus_button && inflammation_num == 0 && headache_num == 0 && paschoactive_num == 0 && insomnia_num == 0 && vitality_num > 0) {
       vitality_num -= 1;
       $('#vitality').val(vitality_num);
-      target.val(num);
+      relax_num += 1;
+      $('#relax').val(relax_num);
     } else if (inflammation_plus_button && paschoactive_num > 0) { // 炎症鎮痛プラスボタン押した時
       paschoactive_num -= 1;
       $('#paschoactive').val(paschoactive_num);
-      target.val(num);
+      inflammation_num += 1;
+      $('#inflammation').val(inflammation_num);
     } else if (inflammation_plus_button && paschoactive_num == 0 && insomnia_num > 0) {
       insomnia_num -= 1;
       $('#insomnia').val(insomnia_num);
-      target.val(num);
+      inflammation_num += 1;
+      $('#inflammation').val(inflammation_num);
     } else if (inflammation_plus_button && paschoactive_num == 0 && insomnia_num == 0 && relax_num > 0) {
       relax_num -= 1;
       $('#relax').val(relax_num);
-      target.val(num);
+      inflammation_num += 1;
+      $('#inflammation').val(inflammation_num);
     } else if (inflammation_plus_button && paschoactive_num == 0 && insomnia_num == 0 && relax_num == 0 && vitality_num > 0) {
       vitality_num -= 1;
       $('#vitality').val(vitality_num);
-      target.val(num);
+      inflammation_num += 1;
+      $('#inflammation').val(inflammation_num);
     } else if (inflammation_plus_button && paschoactive_num == 0 && insomnia_num == 0 && relax_num == 0 && vitality_num == 0 && headache_num > 0) {
       headache_num -= 1;
       $('#headache').val(headache_num);
-      target.val(num);
+      inflammation_num += 1;
+      $('#inflammation').val(inflammation_num);
     } else if (paschoactive_plus_button && relax_num > 0) { // 精神作用プラスボタン押した時
       relax_num -= 1;
       $('#relax').val(relax_num);
-      target.val(num);
+      paschoactive_num += 1;
+      $('#paschoactive').val(paschoactive_num);
     } else if (paschoactive_plus_button && relax_num == 0 && vitality_num > 0) {
       vitality_num -= 1;
       $('#vitality').val(vitality_num);
-      target.val(num);
+      paschoactive_num += 1;
+      $('#paschoactive').val(paschoactive_num);
     } else if (paschoactive_plus_button && relax_num == 0 && vitality_num == 0 && inflammation_num > 0) {
       inflammation_num -= 1;
       $('#inflammation').val(inflammation_num);
-      target.val(num);
+      paschoactive_num += 1;
+      $('#paschoactive').val(paschoactive_num);
     } else if (paschoactive_plus_button && relax_num == 0 && vitality_num == 0 && inflammation_num == 0 && headache_num > 0) {
       headache_num -= 1;
       $('#headache').val(headache_num);
-      target.val(num);
+      paschoactive_num += 1;
+      $('#paschoactive').val(paschoactive_num);
     } else if (paschoactive_plus_button && relax_num == 0 && vitality_num == 0 && inflammation_num == 0 && headache_num == 0 && insomnia_num) {
       insomnia_num -= 1;
       $('#insomnia').val(insomnia_num);
-      target.val(num);
+      paschoactive_num += 1;
+      $('#paschoactive').val(paschoactive_num);
     } else if (vitality_plus_button && headache_num > 0) { // 活力プラスボタン押した時
       headache_num -= 1;
       $('#headache').val(headache_num);
-      target.val(num);
+      vitality_num += 1;
+      $('#vitality').val(vitality_num);
     } else if (vitality_plus_button && headache_num == 0 && inflammation_num > 0) {
       inflammation_num -= 1;
       $('#inflammation').val(inflammation_num);
-      target.val(num);
+      vitality_num += 1;
+      $('#vitality').val(vitality_num);
     } else if (vitality_plus_button && headache_num == 0 && inflammation_num == 0 && insomnia_num > 0) {
       insomnia_num -= 1;
       $('#insomnia').val(insomnia_num);
-      target.val(num);
+      vitality_num += 1;
+      $('#vitality').val(vitality_num);
     } else if (vitality_plus_button && headache_num == 0 && insomnia_num == 0 && insomnia_num == 0 && paschoactive_num > 0) {
       paschoactive_num -= 1;
       $('#paschoactive').val(paschoactive_num);
-      target.val(num);
+      vitality_num += 1;
+      $('#vitality').val(vitality_num);
     } else if (vitality_plus_button && paschoactive_num == 0 && insomnia_num == 0 && insomnia_num == 0 && paschoactive_num == 0 && relax_num) {
       relax_num -= 1;
       $('#relax').val(relax_num);
-      target.val(num);
+      vitality_num += 1;
+      $('#vitality').val(vitality_num);
     } else if (headache_plus_button && insomnia_num > 0) { // 頭痛プラスボタン押した時
       insomnia_num -= 1;
       $('#insomnia').val(insomnia_num);
-      target.val(num);
+      headache_num += 1;
+      $('#headache').val(headache_num);
     } else if (headache_plus_button && insomnia_num == 0 && paschoactive_num > 0) {
       paschoactive_num -= 1;
       $('#paschoactive').val(paschoactive_num);
-      target.val(num);
+      headache_num += 1;
+      $('#headache').val(headache_num);
     } else if (headache_plus_button && insomnia_num == 0 && paschoactive_num == 0 && vitality_num > 0) {
       vitality_num -= 1;
       $('#vitality').val(vitality_num);
-      target.val(num);
+      headache_num += 1;
+      $('#headache').val(headache_num);
     } else if (headache_plus_button && insomnia_num == 0 && paschoactive_num == 0 && vitality_num == 0 && relax_num > 0) {
       relax_num -= 1;
       $('#relax').val(relax_num);
-      target.val(num);
+      headache_num += 1;
+      $('#headache').val(headache_num);
     } else if (headache_plus_button && insomnia_num == 0 && paschoactive_num == 0 && vitality_num == 0 && relax_num == 0 && inflammation_num) {
       inflammation_num -= 1;
       $('#inflammation').val(inflammation_num);
-      target.val(num);
+      headache_num += 1;
+      $('#headache').val(headache_num);
     } else if (insomnia_plus_button && vitality_num > 0) { // 不眠プラスボタン押した時
       vitality_num -= 1;
       $('#vitality').val(vitality_num);
-      target.val(num);
+      insomnia_num += 1;
+      $('#insomnia').val(insomnia_num);
     } else if (insomnia_plus_button && vitality_num == 0 && relax_num > 0) {
       relax_num -= 1;
       $('#relax').val(relax_num);
-      target.val(num);
+      insomnia_num += 1;
+      $('#insomnia').val(insomnia_num);
     } else if (insomnia_plus_button && vitality_num == 0 && relax_num == 0 && headache_num > 0) {
       headache_num -= 1;
       $('#headache').val(headache_num);
-      target.val(num);
+      insomnia_num += 1;
+      $('#insomnia').val(insomnia_num);
     } else if (insomnia_plus_button && vitality_num == 0 && relax_num == 0 && headache_num == 0 && inflammation_num > 0) {
       inflammation_num -= 1;
       $('#inflammation').val(inflammation_num);
-      target.val(num);
+      insomnia_num += 1;
+      $('#insomnia').val(insomnia_num);
     } else if (insomnia_plus_button && vitality_num == 0 && relax_num == 0 && headache_num == 0 && inflammation_num == 0 && paschoactive_num) {
       paschoactive_num -= 1;
       $('#paschoactive').val(paschoactive_num);
-      target.val(num);
+      insomnia_num += 1;
+      $('#insomnia').val(insomnia_num);
     }
 
     // マイナスボタンが押された時、最大値をもつパラメーターに割り振る
     if (relax_sub_button && relax_num > 0) { // リラックスマイナスボタン押した時
-      target.val(num);
+      relax_num -= 1;
+      $('#relax').val(relax_num);
       parameter_array.splice(0, 1);
       const a = maxIndex(parameter_array);
       // console.log(a);
@@ -267,7 +293,8 @@ $(function () {
       $('#headache').val(parameter_array[3]);
       $('#insomnia').val(parameter_array[4]);
     } else if (inflammation_sub_button && inflammation_num > 0) { // 炎症鎮痛マイナスボタン押した時
-      target.val(num);
+      inflammation_num -= 1;
+      $('#inflammation').val(inflammation_num);
       parameter_array.splice(1, 1);
       const a = maxIndex(parameter_array);
       // console.log(a);
@@ -279,7 +306,8 @@ $(function () {
       $('#headache').val(parameter_array[3]);
       $('#insomnia').val(parameter_array[4]);
     } else if (paschoactive_sub_button && paschoactive_num > 0) { // 精神作用マイナスボタン押した時
-      target.val(num);
+      paschoactive_num -= 1;
+      $('#paschoactive').val(paschoactive_num);
       parameter_array.splice(2, 1);
       const a = maxIndex(parameter_array);
       // console.log(a);
@@ -291,7 +319,8 @@ $(function () {
       $('#headache').val(parameter_array[3]);
       $('#insomnia').val(parameter_array[4]);
     } else if (vitality_sub_button && vitality_num > 0) { // 活力マイナスボタン押した時
-      target.val(num);
+      vitality_num -= 1;
+      $('#vitality').val(vitality_num);
       parameter_array.splice(3, 1);
       const a = maxIndex(parameter_array);
       // console.log(a);
@@ -303,7 +332,8 @@ $(function () {
       $('#headache').val(parameter_array[3]);
       $('#insomnia').val(parameter_array[4]);
     } else if (headache_sub_button && headache_num > 0) { // 頭痛マイナスボタン押した時
-      target.val(num);
+      headache_num -= 1;
+      $('#headache').val(headache_num);
       parameter_array.splice(4, 1);
       const a = maxIndex(parameter_array);
       // console.log(a);
@@ -315,7 +345,8 @@ $(function () {
       // $('#headache').val(parameter_array[3]);
       $('#insomnia').val(parameter_array[4]);
     } else if (insomnia_sub_button && insomnia_num > 0) { // 不眠マイナスボタン押した時
-      target.val(num);
+      insomnia_num -= 1;
+      $('#insomnia').val(insomnia_num);
       parameter_array.splice(5, 1);
       const a = maxIndex(parameter_array);
       // console.log(a);
@@ -327,7 +358,7 @@ $(function () {
       $('#headache').val(parameter_array[4]);
       // $('#insomnia').val(parameter_array[4]);
     }
- 
+
   }
 
   const model_relax_array = Object.values(model_relax);
@@ -360,7 +391,7 @@ $(function () {
 
     const sum = Number(relax_number) + Number(inflammation_number) + Number(paschoactive_number)
       + Number(vitality_number) + Number(headache_number) + Number(insomnia_number);
-    
+
     console.log(sum);
 
     const multiplier_relax_array = [];
