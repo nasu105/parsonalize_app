@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use App\Models\Item;
+use App\Models\User;
+use Auth;
 
 class ItemController extends Controller
 {
@@ -13,7 +17,14 @@ class ItemController extends Controller
      */
     public function index()
     {
-        // return view('item.index');
+        //$items = Item::getMyItemOrderByCreated_at();
+        $items = User::query()     
+        ->find(Auth::user()->id)
+        ->userItems()
+        ->orderBy('created_at', 'desc')
+        ->get();
+        // ddd($items);
+        return view('item.index', compact('items'));;
     }
 
     /**
@@ -34,7 +45,10 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // ddd($request);
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        $item = Item::create($data);
+        return view ('item.buyCheck', compact('item'));
     }
 
     /**
