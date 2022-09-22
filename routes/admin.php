@@ -21,19 +21,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'auth'], function() {
-    // Route::get('/item/buyCheck', [ItemController::class, 'buyCheck'])->name('item.buyCheck');
-    Route::resource('item', ItemController::class);
-});
 
+// Route::group(['middleware' => 'auth'], function() {
+//     // Route::get('/item/buyCheck', [ItemController::class, 'buyCheck'])->name('item.buyCheck');
+//     Route::resource('item', ItemController::class);
+// });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return view('admin.dashboard');
+})->middleware(['auth:admin'])->name('dashboard');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -59,7 +59,7 @@ Route::middleware('guest')->group(function () {
                 ->name('password.update');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:admin')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 

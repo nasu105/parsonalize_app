@@ -13,18 +13,18 @@ use App\Http\Controllers\ItemController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth:users'], function() {
     // Route::get('/item/buyCheck', [ItemController::class, 'buyCheck'])->name('item.buyCheck');
     Route::resource('item', ItemController::class);
 });
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return view('user.dashboard');
+})->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__.'/auth.php';
