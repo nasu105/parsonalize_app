@@ -16,16 +16,22 @@
             {{ __('Dashboard') }}
           </x-nav-link>
         </div>
-        <!-- 🔽 一覧ページへのリンクを追加 -->
-        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('item.index')" :active="request()->routeIs('item.index')">
-            {{ __('Index') }}
-          </x-nav-link>
-        </div>
         <!-- 🔽 作成ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('item.create')" :active="request()->routeIs('item.create')">
-            {{ __('Create') }}
+          <div>  
+            <p>{{ __('Pasonarize Create') }}</p>
+            <p class="text-center">{{ __('オーダー') }}</p>
+          </div>
+          </x-nav-link>
+        </div>
+        <!-- 🔽 一覧ページへのリンクを追加 -->
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+          <x-nav-link :href="route('item.index')" :active="request()->routeIs('item.index')">
+            <div>  
+            <p>{{ __('Created Collection') }}</p>
+            <p class="text-center">{{ __('過去の作成物') }}</p>
+          </div>
           </x-nav-link>
         </div>
       </div>
@@ -85,16 +91,16 @@
         {{ __('Dashboard') }}
       </x-responsive-nav-link>
     </div>
-    <!-- 🔽 一覧ページへのリンクを追加 -->
-    <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('item.index')" :active="request()->routeIs('item.index')">
-        {{ __('Index') }}
-      </x-responsive-nav-link>
-    </div>
     <!-- 🔽 作成ページへのリンクを追加 -->
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('item.create')" :active="request()->routeIs('item.create')">
-        {{ __('Create') }}
+        {{ __('Pasonarize Create') }}
+      </x-responsive-nav-link>
+    </div>
+    <!-- 🔽 一覧ページへのリンクを追加 -->
+    <div class="pt-2 pb-3 space-y-1">
+      <x-responsive-nav-link :href="route('item.index')" :active="request()->routeIs('item.index')">
+        {{ __('Created Collection') }}
       </x-responsive-nav-link>
     </div>
 

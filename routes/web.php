@@ -13,7 +13,11 @@ use App\Http\Controllers\ItemController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('item', ItemController::class);
+Route::group(['middleware' => 'auth'], function() {
+    // Route::get('/item/buyCheck', [ItemController::class, 'buyCheck'])->name('item.buyCheck');
+    Route::resource('item', ItemController::class);
+});
+
 
 Route::get('/', function () {
     return view('welcome');

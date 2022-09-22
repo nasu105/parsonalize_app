@@ -23,6 +23,10 @@
 	cursor: pointer;
 }  */
 
+.mixing_content {
+	margin-left: 10%;
+}
+
 input[type="number"] {
 	width: 8em;
 	text-align: center;
@@ -40,6 +44,7 @@ input[type="button"] {
   border-radius: 50%;
 	border: 1px solid #1a1a1a;
   background: #fff;
+	user-select: none;
 }
 
 .btnspinner:hover {
@@ -71,4 +76,25 @@ input[type="button"] {
 
 .insomnia_content {
 	padding: 24px 0 24px 24px;
+}
+
+.submit_form {
+	text-align: center;
+}
+
+.button {
+	font-size: xx-large;
+	/* text-align: center; */
+  padding: 0;
+	border: 1px solid #1a1a1a;
+  background: #fff;
+	user-select: none;
+	margin-bottom: 24px;
+	border-radius: 12px;
+	padding: 0 2em 0 2em;
+}
+
+.button:hover {
+	color: #fff;
+  background: #000;
 }
