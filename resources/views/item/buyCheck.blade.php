@@ -26,7 +26,7 @@
           </div>
           <div>
             <p>合計金額</p>
-            <input type="text" value="0" name="sum_price" readonly>
+            <input type="text" value="0" name="sum_price"  id="sum_price" readonly>
           </div>
           <div>
             <button type="submit" id="order_button" class="order_button">注文確定</button>
@@ -40,16 +40,26 @@
   </div>
 
   <script>
-    // グラフ作成(chartjs)
     $(function () {
       const item = @json($item); // phpデータをjsデータに変換
       const a = Object.values(item); // valuesだけを格納
       const result = a.splice(0, 6); // parameterの値だけを格納
       const parameter_array = result.map(Number);
-      console.log(parameter_array);
-      drawChart();
+      const result_array = [0, 0, 0, 0, 0]; // 調合結果の配列 [cbd,cbg,cbn,cbc,terpen]の順番
+      const unit_price_object = @json($unit_price); // 単価オブジェクトを変数に格納
+      const unit_price_str = Object.values(unit_price_object); // 単価を変数に格納
+      const unit_price = unit_price_str.map(Number);
 
-      function drawChart() {
+      drawChart(); // グラフ作成
+      mixing_percent(); // 調合結果を作成
+      // total_amount(result_array[0], result_array[1], result_array[2], result_array[3], result_array[4]);
+      const sum_price = total_amount(result_array[0], result_array[1], result_array[2], result_array[3], result_array[4]);
+      $('#sum_price').val(sum_price);
+      // console.log(sum_price);
+      // console.log(result_array);
+      // console.log(unit_price);
+
+      function drawChart() {  // グラフ作成(chartjs)
         let ctx = document.getElementById("myChart");
         window.myChart = new Chart(ctx, { // インスタンスをグローバル変数で作成
           type: 'radar',
@@ -81,6 +91,64 @@
           }
         });
       }
+
+      function mixing_percent() { // 調合結果を作成
+        const multiplier_relax_array = [];
+        const multiplier_inflammation_array = [];
+        const multiplier_paschoactive_array = [];
+        const multiplier_vitality_array = [];
+        const multiplier_headach_array = [];
+        const multiplier_insomnia_array = [];
+
+        // cbd_modelを変数に格納
+        const model_relax = @json($model_relax);
+        const model_inflammation = @json($model_inflammation);
+        const model_paschoactive = @json($model_paschoactive);
+
+        // objectのvalueを取得
+        const model_relax_value = Object.values(model_relax);
+        const model_inflammation_value = Object.values(model_inflammation);
+        const model_paschoactive_value = Object.values(model_paschoactive);
+
+        // 文字列を数値に変換
+        const model_relax_array = model_relax_value.map(Number);
+        const model_inflammation_array = model_inflammation_value.map(Number);
+        const model_paschoactive_array = model_paschoactive_value.map(Number);
+
+        for (let i = 0; i < 4; i++) {
+          multiplier_relax_array.push(model_relax_array[i] * parameter_array[0]);
+          multiplier_inflammation_array.push(model_inflammation_array[i] * parameter_array[1]);
+          multiplier_paschoactive_array.push(model_paschoactive_array[i] * parameter_array[2]);
+          multiplier_vitality_array.push(model_relax_array[i] * parameter_array[3]);
+          multiplier_headach_array.push(model_inflammation_array[i] * parameter_array[4]);
+          multiplier_insomnia_array.push(model_paschoactive_array[i] * parameter_array[5]);
+        }
+
+        result_array[0] += Math.round((multiplier_relax_array[0] + multiplier_inflammation_array[0] + multiplier_paschoactive_array[0] + multiplier_vitality_array[0] + multiplier_headach_array[0] + multiplier_insomnia_array[0]) / 18);
+        result_array[1] += Math.round((multiplier_relax_array[1] + multiplier_inflammation_array[1] + multiplier_paschoactive_array[1] + multiplier_vitality_array[1] + multiplier_headach_array[1] + multiplier_insomnia_array[1]) / 18);
+        result_array[2] += Math.round((multiplier_relax_array[2] + multiplier_inflammation_array[2] + multiplier_paschoactive_array[2] + multiplier_vitality_array[2] + multiplier_headach_array[2] + multiplier_insomnia_array[2]) / 18);
+        result_array[3] += Math.round((multiplier_relax_array[3] + multiplier_inflammation_array[3] + multiplier_paschoactive_array[3] + multiplier_vitality_array[3] + multiplier_headach_array[3] + multiplier_insomnia_array[3]) / 18);
+        result_array[4] += 100 - (result_array[0] + result_array[1] + result_array[2] + result_array[3]);
+
+      }
+
+
+      
+      function total_amount (cbd_num, cbg_num, cbn_num, cbc_num, terpene_num) { //　合計金額計算
+        let sum_price = 0;
+        const parameter_array = [cbd_num, cbg_num, cbn_num, cbc_num, terpene_num]; // 引数を配列に格納
+
+        for (let i = 0; i <= 4; i++) {
+          sum_price += parameter_array[i] * unit_price[i];
+        }
+
+        return sum_price;
+      }
+
+
+      
+
+
     });
   </script>
 

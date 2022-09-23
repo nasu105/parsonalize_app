@@ -22,8 +22,7 @@ return new class extends Migration
             $table->integer('vitality');
             $table->integer('headache');
             $table->integer('insomnia');
-            $table->integer('order');
-            $table->integer('buy_judment')->nullable();
+            $table->boolean('order_flg')->default(false);
             $table->integer('sum_price')->nullable();
             $table->timestamps();
         });

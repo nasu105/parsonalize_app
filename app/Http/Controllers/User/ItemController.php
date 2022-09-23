@@ -49,7 +49,13 @@ class ItemController extends Controller
         // ddd($request);
         $data = $request->merge(['user_id' => Auth::user()->id])->all();
         $item = Item::create($data);
-        return view ('item.buyCheck', compact('item'));
+        $model_relax = config('cbd_model.model_relax');
+        $model_inflammation = config('cbd_model.model_inflammation');
+        $model_paschoactive = config('cbd_model.model_paschoactive');
+        $unit_price = config('unit_price.unit_price');
+        // ddd($unit_price);
+        // ddd($model_relax);
+        return view ('item.buyCheck', compact('item', 'model_relax', 'model_inflammation', 'model_paschoactive', 'unit_price'));
     }
 
     /**
