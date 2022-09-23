@@ -8,7 +8,9 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\UsersItemController;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -26,6 +28,11 @@ use Illuminate\Support\Facades\Route;
 //     // Route::get('/item/buyCheck', [ItemController::class, 'buyCheck'])->name('item.buyCheck');
 //     Route::resource('item', ItemController::class);
 // });
+
+Route::group(['middleware' => 'auth:admin'], function() {
+    // Route::get('/item/buyCheck', [ItemController::class, 'buyCheck'])->name('item.buyCheck');
+    Route::resource('usersitem', UsersItemController::class);
+});
 
 Route::get('/', function () {
     return view('admin.welcome');

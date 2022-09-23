@@ -16,6 +16,12 @@
             {{ __('Dashboard') }}
           </x-nav-link>
         </div>
+        <!-- 🔽 一覧ページへのリンクを追加 -->
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+          <x-nav-link :href="route('admin.usersitem.index')" :active="request()->routeIs('admin.usersitem.index')">
+            {{ __('Index') }}
+          </x-nav-link>
+        </div>
       </div>
 
       <!-- Settings Dropdown -->

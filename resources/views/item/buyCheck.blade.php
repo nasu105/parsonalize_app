@@ -26,7 +26,10 @@
           </div>
           <div>
             <p>合計金額</p>
-            <input type="text" value="0" readonly>
+            <input type="text" value="0" name="sum_price" readonly>
+          </div>
+          <div>
+            <button type="submit" id="order_button" class="order_button">注文確定</button>
           </div>
           <div>
             <canvas id="myChart"></canvas>

@@ -22,7 +22,7 @@
       <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
         <div class="bg-white overflow-hiddn shadow-sm sm:rounded-lg">
           <div class="bg-white border-b border-gray-200">
-            <form action="{{ route('item.store') }}" method="POST">
+            <form action="{{ route('user.item.store') }}" method="POST">
               @csrf
               <div>
                 <div>
@@ -93,6 +93,7 @@
                           id="insomnia_sub_button">
                       </p>
                     </div>
+                    <input type="hiden" value="0" name="order">
                   </div>
                   <div>
                     <canvas id="myChart"></canvas>

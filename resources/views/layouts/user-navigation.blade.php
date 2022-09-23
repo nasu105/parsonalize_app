@@ -18,7 +18,7 @@
         </div>
         <!-- 🔽 作成ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('item.create')" :active="request()->routeIs('item.create')">
+          <x-nav-link :href="route('user.item.create')" :active="request()->routeIs('user.item.create')">
           <div>  
             <p>{{ __('Pasonarize Create') }}</p>
             <p class="text-center">{{ __('オーダー') }}</p>
@@ -27,7 +27,7 @@
         </div>
         <!-- 🔽 一覧ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('item.index')" :active="request()->routeIs('item.index')">
+          <x-nav-link :href="route('user.item.index')" :active="request()->routeIs('user.item.index')">
             <div>  
             <p>{{ __('Created Collection') }}</p>
             <p class="text-center">{{ __('過去の作成物') }}</p>
@@ -93,13 +93,13 @@
     </div>
     <!-- 🔽 作成ページへのリンクを追加 -->
     <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('item.create')" :active="request()->routeIs('item.create')">
+      <x-responsive-nav-link :href="route('user.item.create')" :active="request()->routeIs('user.item.create')">
         {{ __('Pasonarize Create') }}
       </x-responsive-nav-link>
     </div>
     <!-- 🔽 一覧ページへのリンクを追加 -->
     <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('item.index')" :active="request()->routeIs('item.index')">
+      <x-responsive-nav-link :href="route('user.item.index')" :active="request()->routeIs('user.item.index')">
         {{ __('Created Collection') }}
       </x-responsive-nav-link>
     </div>
