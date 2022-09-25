@@ -1,3 +1,4 @@
+  <link rel="stylesheet" href="{{ asset('css/index.style.css') }}">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <x-app-layout>
   <x-slot name="header">
@@ -43,6 +44,28 @@
                   echo date('Y年n月j日', strtotime($updated_at));
                   ?>
                 </td>
+                @if($item->sum_price != null)
+                <!-- 星レビューボタン -->
+                <form action="{{ route('user.star.store') }}" method="POST" name="rate-form" id="rate-form">
+                  @csrf
+                  <td>
+                    <input type="hidden" value="{{ $item->id }}" name="item_id">
+                    <div class="star-form">
+                      <input id="star5" type="radio" name="star" id="star" value="5">
+                      <label for="star5">★</label>
+                      <input id="star4" type="radio" name="star" id="star" value="4">
+                      <label for="star4">★</label>
+                      <input id="star3" type="radio" name="star" id="star" value="3">
+                      <label for="star3">★</label>
+                      <input id="star2" type="radio" name="star" id="star" value="2">
+                      <label for="star2">★</label>
+                      <input id="star1" type="radio" name="star" id="star" value="1">
+                      <label for="star1">★</label>
+                    </div>
+                  </td>
+                </form>
+                @endif                  
+
               </tr>
               @endforeach
             </tbody>
@@ -53,7 +76,21 @@
     </div>
   </div>
   <script>
-    const items = @json($items); // phpの変数をjsに変更
-    console.log(items);
+    $(function () {
+      const items = @json($items); // phpの変数をjsに変更
+      console.log(items);
+
+      // const star = $('#star').val();
+      // console.log(star);
+
+      // レビューの値が変更された場合DBに値を送信
+      $('input:radio[name="star"]').change(function() { // レビューが変更された時
+        // const star_val = $('input:radio[name="star"]:checked').val() // チェックされたvalを取得
+        // console.log(star_val);
+        $('#rate-form').submit();
+      });
+    });
+
+
   </script>
 </x-app-layout>

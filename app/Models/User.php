@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Item::class);
     }
+
+    public function items() 
+    {
+        return $this->belongsToMany(Item::class)->withTimestamps();
+    }
 }

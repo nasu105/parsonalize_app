@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ItemController;
+use App\Http\Controllers\User\StarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,9 @@ use App\Http\Controllers\User\ItemController;
 */
 Route::group(['middleware' => 'auth:users'], function() {
     // Route::get('/item/buyCheck', [ItemController::class, 'buyCheck'])->name('item.buyCheck');
+    Route::resource('star', StarController::class);
+    // Route::post('item/{item}/stars', [StarController::class, 'store'])->name('stars');
+    // Route::put('item/{item}/againstars', [StarController::class, 'update'])->name('againstars');
     Route::resource('item', ItemController::class);
 });
 

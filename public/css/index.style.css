@@ -1,0 +1,24 @@
+.star-form {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.star-form input[type=radio] {
+  display: none;
+}
+.star-form label {
+  position: relative;
+  padding: 0 5px;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 35px;
+}
+.star-form label:hover {
+  color: #ffcc00;
+}
+.star-form label:hover ~ label {
+  color: #ffcc00;
+}
+.star-form input[type=radio]:checked ~ label {
+  color: #ffcc00;
+}
