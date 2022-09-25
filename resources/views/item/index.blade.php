@@ -18,6 +18,7 @@
               <tr>
                 <p>test</p>
                 <p>test2</p>
+                <p>test3</p>
                 <th>調合ナンバー</th>
                 <th>リラックス</th>
                 <th>炎症鎮痛</th>
