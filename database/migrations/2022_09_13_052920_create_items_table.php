@@ -23,7 +23,8 @@ return new class extends Migration
             $table->integer('headache');
             $table->integer('insomnia');
             $table->boolean('order_flg')->default(false);
-            $table->integer('sum_price')->nullable();
+            $table->integer('sum_price')->default(0);
+            $table->integer('star')->default(false);
             $table->timestamps();
         });
     }

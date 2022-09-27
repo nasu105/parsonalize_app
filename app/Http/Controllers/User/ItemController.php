@@ -77,7 +77,7 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        // ddd($id);
     }
 
     /**
@@ -94,9 +94,18 @@ class ItemController extends Controller
         // $price = $request->sum_price;
         // ddd($price);
         // $result_price = Item::find($id)->save(['sum_price' => $price]);
-        $result = Item::find($id)->update($request->all() );
-        $reault_price = Item::find($id)->update(['order_flg' => true]);
-        return redirect()->route('user.item.index');
+        if ($request->star == 0) {
+            $result = Item::find($id)->update($request->all());
+            $reault_price = Item::find($id)->update(['order_flg' => true]);
+            return redirect()->route('user.item.index');
+        } else {
+            // ddd($request);
+            // ddd($request->all());
+            $star = $request->star;
+            $result = Item::find($id)->update(['star' => $star]);
+            return redirect()->route('user.item.index');
+        }
+
 
     }
 
@@ -109,6 +118,18 @@ class ItemController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function stars(Request $request) 
+    {
+        ddd($request->all());
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        // $data->attach();
+        $star = Item::create($data);
+        // ddd($data);
+        // $request->user_id->attach(Auth::id());
+        // ddd($data);
+        return redirect('user.Item.index');
     }
 
 }

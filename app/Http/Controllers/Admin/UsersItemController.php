@@ -19,13 +19,12 @@ class UsersItemController extends Controller
     public function index()
     {
         //$items = Item::getMyItemOrderByCreated_at();
-        $items = User::query()     
-        ->find(Auth::user()->id)
-        ->userItems()
+        $order_items = Item::query()
+        ->where('order_flg','1')
         ->orderBy('created_at', 'desc')
         ->get();
-        // ddd($items);
-        return view('item.index', compact('items'));;
+        // ddd($order_items);
+        return view('admin.index', compact('order_items'));;
     }
 
     /**
@@ -47,9 +46,9 @@ class UsersItemController extends Controller
     public function store(Request $request)
     {
         // ddd($request);
-        $data = $request->merge(['user_id' => Auth::user()->id])->all();
-        $item = Item::create($data);
-        return view ('item.buyCheck', compact('item'));
+        // $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        // $item = Item::create($data);
+        // return view ('item.buyCheck', compact('item'));
     }
 
     /**
@@ -60,7 +59,7 @@ class UsersItemController extends Controller
      */
     public function show($id)
     {
-        //
+        ddd($id);
     }
 
     /**

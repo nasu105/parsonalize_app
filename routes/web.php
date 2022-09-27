@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ItemController;
 use App\Http\Controllers\User\StarController;
+use App\Http\Controllers\Admin\UsersItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,12 @@ Route::group(['middleware' => 'auth:users'], function() {
     Route::resource('star', StarController::class);
     // Route::post('item/{item}/stars', [StarController::class, 'store'])->name('stars');
     // Route::put('item/{item}/againstars', [StarController::class, 'update'])->name('againstars');
+    // Route::put('item/stars', [ItemController::class, 'stars'])->name('stars');
     Route::resource('item', ItemController::class);
+});
+
+Route::group(['middleware' => 'auth:admin'], function() {
+    Route::resource('usersitem', UsersItemController::class);
 });
 
 

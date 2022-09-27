@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
-use App\Models\Item_User;
+use App\Models\Star;
 use Auth;
 
 class StarController extends Controller
@@ -40,10 +40,13 @@ class StarController extends Controller
     public function store(Request $request)
     {
         // ddd($request->all());
-        // $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
         // $data->attach();
-        $request->user_id->attach(Auth::id());
-        ddd($request);
+        $star = Star::create($data);
+        // ddd($data);
+        // $request->user_id->attach(Auth::id());
+        // ddd($data);
+        return redirect('user.Item.index');
     }
 
     /**
@@ -77,7 +80,8 @@ class StarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        ddd($id);
+        ddd($request);
     }
 
     /**
@@ -89,5 +93,9 @@ class StarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function review(Request $request) {
+        ddd($request);
     }
 }

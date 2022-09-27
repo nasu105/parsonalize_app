@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item_User extends Model
+class Star extends Model
 {
     use HasFactory;
 
@@ -14,4 +14,9 @@ class Item_User extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function star_users()
+    {
+        return $this->belongsTomany(User::class)->withTimestamps();
+    }
 }
