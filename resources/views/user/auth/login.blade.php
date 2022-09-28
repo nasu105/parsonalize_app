@@ -47,11 +47,18 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
+                
+                
 
                 <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
+                    {{ __('ログイン') }}
                 </x-primary-button>
             </div>
+            {{-- <a href=" {{ route(user.register) }} "> --}}
+                    <x-primary-button class="ml-3">
+                        {{ __('新規作成') }}
+                    </x-primary-button>
+                </a>
         </form>
     </x-auth-card>
 </x-guest-layout>

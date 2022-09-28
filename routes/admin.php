@@ -34,6 +34,10 @@ Route::group(['middleware' => 'auth:admin'], function() {
     Route::resource('usersitem', UsersItemController::class);
 });
 
+// Route::group(['middleware' => 'auth:admin'], function() {
+//     Route::resource('usersitem', UsersItemController::class);
+// });
+
 Route::get('/', function () {
     return view('admin.welcome');
 });

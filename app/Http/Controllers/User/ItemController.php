@@ -25,7 +25,7 @@ class ItemController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
         // ddd($items);
-        return view('item.index', compact('items'));;
+        return view('user.item.index', compact('items'));;
     }
 
     /**
@@ -35,7 +35,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('item.create');
+        return view('user.item.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class ItemController extends Controller
         $unit_price = config('unit_price.unit_price');
         // ddd($unit_price);
         // ddd($model_relax);
-        return view ('item.buyCheck', compact('item', 'model_relax', 'model_inflammation', 'model_paschoactive', 'unit_price'));
+        return view ('user.item.buyCheck', compact('item', 'model_relax', 'model_inflammation', 'model_paschoactive', 'unit_price'));
     }
 
     /**

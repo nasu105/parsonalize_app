@@ -48,6 +48,7 @@
       const item = @json($item); // phpデータをjsデータに変換
       const a = Object.values(item); // valuesだけを格納
       const result = a.splice(0, 6); // parameterの値だけを格納
+      // console.log(result);
       const parameter_array = result.map(Number);
       const result_array = [0, 0, 0, 0, 0]; // 調合結果の配列 [cbd,cbg,cbn,cbc,terpen]の順番
       const unit_price_object = @json($unit_price); // 単価オブジェクトを変数に格納

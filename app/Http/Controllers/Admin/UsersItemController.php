@@ -59,7 +59,14 @@ class UsersItemController extends Controller
      */
     public function show($id)
     {
-        ddd($id);
+        // ddd($id);
+        $order_item = Item::find($id);
+        $model_relax = config('cbd_model.model_relax');
+        $model_inflammation = config('cbd_model.model_inflammation');
+        $model_paschoactive = config('cbd_model.model_paschoactive');
+        $unit_price = config('unit_price.unit_price');
+        // ddd($order_item);
+        return view ('admin.show', compact('order_item', 'model_relax', 'model_inflammation', 'model_paschoactive', 'unit_price'));
     }
 
     /**

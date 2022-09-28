@@ -31,21 +31,21 @@
               @foreach ($order_items as $order_item)
               <tr>
                 <!-- 詳細画面へのリンク -->
-                <td><a href="{{ route('admin.usersitem.show',$order_item->id) }}">{{ $order_item->id }}</a></td>
-                <!-- <td>{{ $order_item->relax }}</td>
-                <td>{{ $order_item->inflammation }}</td>
-                <td>{{ $order_item->paschoactive }}</td>
-                <td>{{ $order_item->vitality }}</td>
-                <td>{{ $order_item->headache }}</td>
-                <td>{{ $order_item->insomnia }}</td> -->
-                <td>
-                  <a href="{{ route('admin.usersitem.show',$order_item->id) }}">
-                    <?php 
-                    $updated_at = $order_item->created_at;
-                    echo date('Y年n月j日', strtotime($updated_at));
-                    ?>
-                  </a>
-                </td>       
+                  <td><a href="{{ route('admin.usersitem.show',$order_item->id) }}">{{ $order_item->id }}</a></td>
+                  <!-- <td>{{ $order_item->relax }}</td>
+                  <td>{{ $order_item->inflammation }}</td>
+                  <td>{{ $order_item->paschoactive }}</td>
+                  <td>{{ $order_item->vitality }}</td>
+                  <td>{{ $order_item->headache }}</td>
+                  <td>{{ $order_item->insomnia }}</td> -->
+                  <td>
+                    <a href="{{ route('admin.usersitem.show',$order_item->id) }}">
+                      <?php 
+                      $updated_at = $order_item->created_at;
+                      echo date('Y年n月j日', strtotime($updated_at));
+                      ?>
+                    </a>
+                  </td>       
               </tr>
               @endforeach
             </tbody>

@@ -24,10 +24,6 @@ Route::group(['middleware' => 'auth:users'], function() {
     Route::resource('item', ItemController::class);
 });
 
-Route::group(['middleware' => 'auth:admin'], function() {
-    Route::resource('usersitem', UsersItemController::class);
-});
-
 
 Route::get('/', function () {
     return view('user.welcome');
