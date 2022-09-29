@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\UsersItemController;
 |
 */
 Route::group(['middleware' => 'auth:users'], function() {
+    Route::get('item/cart/cancel', [ItemController::class, 'cancel'])->name('cart.cancel');
+    Route::get('item/cart/succsess', [ItemController::class, 'succsess'])->name('cart.succsess');
     Route::get('item/cart/checkout', [ItemController::class, 'checkout'])->name('cart.checkout');
     Route::put('item/{item}/cart_add', [ItemController::class, 'cart_add'])->name('item.cart_add');
     Route::get('item/cart', [ItemController::class, 'cart'])->name('cart');

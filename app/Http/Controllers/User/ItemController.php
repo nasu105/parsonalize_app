@@ -236,13 +236,34 @@ class ItemController extends Controller
             'payment_method_types' => ['card'], // documentに記載がない部分(Udemyではある,stripeのバージョンが違うため)
             'line_items' => [$lineItems],
             'mode' => 'payment',
-            'success_url' => route('user.item.index'),
-            'cancel_url' => route('user.cart'),
+            'success_url' => route('user.cart.succsess'),
+            'cancel_url' => route('user.cart.cancel'),
         ]);
 
         $publickey = env('STRIPE_PUBLIC_KEY');
 
         return view('user.item.checkout', compact('session', 'publickey'));
+    }
+
+    public function succsess()
+    {
+        $items = User::query()
+        ->find(Auth::user()->id)
+        ->userItems()
+        ->where('cart_flg', 1)
+        ->get();
+
+        foreach($items as $item) { // cart商品を消す,order_flgを立てる
+            $cart_flg = Item::find($item->id)->update(['cart_flg' => false]);
+            $order_flg = Item::find($item->id)->update(['order_flg' => true]);
+        }
+
+        return redirect()->route('user.item.create');
+    } 
+
+    public function cancel()
+    {
+        return redirect()->route('user.cart');
     }
 
 }

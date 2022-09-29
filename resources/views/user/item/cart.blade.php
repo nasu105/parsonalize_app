@@ -10,6 +10,9 @@
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
       <div class="bg-white overflow-hiddn shadow-sm sm:rounded-lg">
+      @if (count($items) == false) 
+      カートに商品が入っていません。
+      @else
         <div class="bg-white border-b border-gray-200">
           <table class="table table-striped">
             <thead>
@@ -51,6 +54,7 @@
           </div>
           <button onclick="location.href='{{ route('user.cart.checkout')}}'">レジに進む</button>
         </div>
+      @endif 
       </div>
     </div>
   </div>
