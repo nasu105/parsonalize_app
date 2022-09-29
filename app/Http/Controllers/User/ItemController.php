@@ -187,11 +187,11 @@ class ItemController extends Controller
 
         // ddd($items);
 
-        $lineItems = [];
+        /* $lineItems = []; // Udemyでのstripe処理
         foreach($items as $item) {
             $lineItem = [
                 'name' => $item->id,
-                'amount' => $item->price,
+                'unit_amount' => $item->price,
                 'currency' => 'jpy',
                 'quantity' => $item->quantity,
             ];
@@ -202,12 +202,47 @@ class ItemController extends Controller
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         $session = \Stripe\Checkout\Session::create([
-            'payment_mehot_types' => ['card'], // documentに記載がない部分(Udemyではある,stripeのバージョンが違うため)
+            'payment_method_types' => ['card'], // documentに記載がない部分(Udemyではある,stripeのバージョンが違うため)
             'line_items' => [$lineItems],
             'mode' => 'payment',
             'success_url' => route('user.item.index'),
             'cancel_url' => route('user.cart'),
         ]);
+
+        $publickey = env('STRIPE_PUBLIC_KEY');
+
+        return view('user.checkout', compact('session', 'publickey')); */
+
+
+        $lineItems = [];
+        foreach($items as $item) {
+            $lineItem = [
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => $item->id,
+                    ],
+                    'unit_amount' => $item->price,
+                ],
+                'quantity' => $item->quantity,
+            ];
+            array_push($lineItems, $lineItem);
+        }
+        // dd($lineItems);
+
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'], // documentに記載がない部分(Udemyではある,stripeのバージョンが違うため)
+            'line_items' => [$lineItems],
+            'mode' => 'payment',
+            'success_url' => route('user.item.index'),
+            'cancel_url' => route('user.cart'),
+        ]);
+
+        $publickey = env('STRIPE_PUBLIC_KEY');
+
+        return view('user.item.checkout', compact('session', 'publickey'));
     }
 
 }

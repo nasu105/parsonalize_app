@@ -22,7 +22,6 @@
                 <th>頭痛</th>
                 <th>不眠</th>
                 <th>作成日時</th>
-                <th>商品金額</th>
               </tr>
             </thead>
 
@@ -42,15 +41,15 @@
                   echo date('Y年n月j日', strtotime($updated_at));
                   ?>
                 </td>
-                <td>{{ $item->price }}</td>
+                <td>{{ $item->price }}円(税込)</td>
               </tr>
               @endforeach
             </tbody>
           </table>
           <div>
-            <p><label for="">合計金額:<input type="text" id="total_price" value="0" readonly>円</label></p>
+            <p><label for="">小計:<input type="text" id="total_price" value="0" readonly>円</label></p>
           </div>
-          <button type="submit" id="order_button">レジに進む</button>
+          <button onclick="location.href='{{ route('user.cart.checkout')}}'">レジに進む</button>
         </div>
       </div>
     </div>
