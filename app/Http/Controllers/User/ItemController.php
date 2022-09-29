@@ -35,7 +35,10 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('user.item.create');
+        $model_relax = config('cbd_model.model_relax');
+        $model_inflammation = config('cbd_model.model_inflammation');
+        $model_paschoactive = config('cbd_model.model_paschoactive');
+        return view('user.item.create',compact('model_relax', 'model_inflammation', 'model_paschoactive'));
     }
 
     /**
@@ -46,7 +49,6 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        // ddd($request);
         $data = $request->merge(['user_id' => Auth::user()->id])->all();
         $item = Item::create($data);
         $model_relax = config('cbd_model.model_relax');
@@ -55,6 +57,25 @@ class ItemController extends Controller
         $unit_price = config('unit_price.unit_price');
         // ddd($unit_price);
         // ddd($model_relax);
+        // ddd($data);
+        $result_str_array = [$item->cbd, $item->cbg, $item->cbn, $item->cbc];
+        $result_nam_array = array_map('intval', $result_str_array);
+        // ddd($result_nam_array);
+        $max_nam = max($result_nam_array);
+        if ($max_nam == $result_nam_array[0]) { // 最大値がcbdの時
+            ddd('cbd' . $result_nam_array[0]);
+            return view ('user.item.cbdpage');
+        } elseif ($max_nam == $result_nam_array[1]) { // 最大値がcbgの時
+            ddd('cbg' . $result_nam_array[1]);
+            return view ('user.item.cbgpage');
+        } elseif ($max_nam == $result_nam_array[2]) { // 最大値がcbnの時
+            ddd('cbn' . $result_nam_array[2]);
+            return view ('user.item.cbnpage');
+        } elseif ($max_nam == $result_nam_array[3]) { // 最大値がcbcの時
+            ddd('cbc' . $result_nam_array[3]);
+            return view ('user.item.cbcpage');
+        }
+        ddd($max_nam);
         return view ('user.item.buyCheck', compact('item', 'model_relax', 'model_inflammation', 'model_paschoactive', 'unit_price'));
     }
 

@@ -22,6 +22,11 @@ return new class extends Migration
             $table->integer('vitality');
             $table->integer('headache');
             $table->integer('insomnia');
+            $table->integer('cbd');
+            $table->integer('cbg');
+            $table->integer('cbn');
+            $table->integer('cbc');
+            $table->integer('telpen');
             $table->boolean('order_flg')->default(false);
             $table->integer('sum_price')->default(0);
             $table->integer('star')->default(false);

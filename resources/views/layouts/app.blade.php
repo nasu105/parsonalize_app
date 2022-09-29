@@ -18,9 +18,14 @@
 <body class="font-sans antialiased">
     <!-- <div class="min-h-screen bg-gray-100"> -->
     <div class="min-h-screen">
-        @if(auth('admin')->user())
+        <!-- {{--@if(auth('admin')->user())
             @include('layouts.admin-navigation')
         @elseif(auth('users')->user())
+            @include('layouts.user-navigation')
+        @endif --}} -->
+        @if(request()->is('admin*'))
+            @include('layouts.admin-navigation')
+        @else
             @include('layouts.user-navigation')
         @endif
 
