@@ -58,24 +58,24 @@ class ItemController extends Controller
         // ddd($unit_price);
         // ddd($model_relax);
         // ddd($data);
-        $result_str_array = [$item->cbd, $item->cbg, $item->cbn, $item->cbc];
+        /*$result_str_array = [$item->cbd, $item->cbg, $item->cbn, $item->cbc]; 
         $result_nam_array = array_map('intval', $result_str_array);
         // ddd($result_nam_array);
         $max_nam = max($result_nam_array);
         if ($max_nam == $result_nam_array[0]) { // 最大値がcbdの時
-            ddd('cbd' . $result_nam_array[0]);
+            // ddd('cbd' . $result_nam_array[0]);
             return view ('user.item.cbdpage');
         } elseif ($max_nam == $result_nam_array[1]) { // 最大値がcbgの時
-            ddd('cbg' . $result_nam_array[1]);
+            // ddd('cbg' . $result_nam_array[1]);
             return view ('user.item.cbgpage');
         } elseif ($max_nam == $result_nam_array[2]) { // 最大値がcbnの時
-            ddd('cbn' . $result_nam_array[2]);
+            // ddd('cbn' . $result_nam_array[2]);
             return view ('user.item.cbnpage');
         } elseif ($max_nam == $result_nam_array[3]) { // 最大値がcbcの時
-            ddd('cbc' . $result_nam_array[3]);
+            // ddd('cbc' . $result_nam_array[3]);
             return view ('user.item.cbcpage');
         }
-        ddd($max_nam);
+        ddd($max_nam); */
         return view ('user.item.buyCheck', compact('item', 'model_relax', 'model_inflammation', 'model_paschoactive', 'unit_price'));
     }
 
@@ -115,9 +115,9 @@ class ItemController extends Controller
         // $price = $request->sum_price;
         // ddd($price);
         // $result_price = Item::find($id)->save(['sum_price' => $price]);
-        if ($request->star == 0) {
+        /* if ($request->star == 0) {
             $result = Item::find($id)->update($request->all());
-            $reault_price = Item::find($id)->update(['order_flg' => true]);
+            $reault_price = Item::find($id)->update(['cart_flg' => true]);
             return redirect()->route('user.item.index');
         } else {
             // ddd($request);
@@ -125,9 +125,11 @@ class ItemController extends Controller
             $star = $request->star;
             $result = Item::find($id)->update(['star' => $star]);
             return redirect()->route('user.item.index');
-        }
-
-
+        } */
+        ddd($request);
+        $result = Item::find($id)->update($request->all());
+        $cart_flg = Item::find($id)->update(['cart_flg' => true]);
+        return redirect()->route('user.item.index');
     }
 
     /**
@@ -150,7 +152,29 @@ class ItemController extends Controller
         // ddd($data);
         // $request->user_id->attach(Auth::id());
         // ddd($data);
-        return redirect('user.Item.index');
+        return redirect()->route('user.item.index');
+    }
+
+    public function mycart()
+    {
+        // ddd('mycart');
+        $items = User::query()
+            ->find(Auth::user()->id)
+            ->userItems()
+            ->where('cart_flg', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        // ddd($items);
+        return view('user.item.mycart', compact('items'));
+    }
+
+    public function cart_add (Request $request, $id)
+    {
+        // ddd($request);
+        // ddd($id);
+        $result = Item::find($id)->update($request->all());
+        $cart_flg = Item::find($id)->update(['cart_flg' => true]);
+        return redirect()->route('user.mycart');
     }
 
 }

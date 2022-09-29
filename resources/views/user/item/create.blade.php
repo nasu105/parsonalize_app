@@ -93,11 +93,6 @@
                           id="insomnia_sub_button">
                       </p>
                     </div>
-                    <input type="hidden" value="0" id="cbd" name="cbd">
-                    <input type="hidden" value="0" id="cbg" name="cbg">
-                    <input type="hidden" value="0" id="cbn" name="cbn">
-                    <input type="hidden" value="0" id="cbc" name="cbc">
-                    <input type="hidden" value="0" id="telpen" name="telpen">
                     <input type="hiden" value="0" name="order">
                   </div>
                   <div>
@@ -106,7 +101,7 @@
                 </div>
               </div>
               <div class="submit_form">
-                <button type="submit" id="button" class="button">調合</button>
+                <button type="submit" id="button" class="button">作成</button>
               </div>
             </form>
           </div>
@@ -561,68 +556,6 @@
           drawChart();
 
         }
-
-        // 調合ボタンクリック時の処理
-        $('#button').on('click', function () {
-          console.log('hello');
-          let relax_num = Number($("#relax").val());
-          let inflammation_num = Number($('#inflammation').val());
-          let paschoactive_num = Number($('#paschoactive').val());
-          let vitality_num = Number($('#vitality').val());
-          let headache_num = Number($('#headache').val());
-          let insomnia_num = Number($('#insomnia').val());
-          let parameter_array = [relax_num, inflammation_num, paschoactive_num, vitality_num, headache_num, insomnia_num];
-          const result_array = [0, 0, 0, 0, 0]; // 調合結果の配列 [cbd,cbg,cbn,cbc,terpen]の順番
-
-          // console.log('調合');
-          const cbd = $('#cbd').val();
-          const cbg = $('#cbg').val();
-          const cbn = $('#cbn').val();
-          const cbc = $('#cbc').val();
-
-          const multiplier_relax_array = [];
-          const multiplier_inflammation_array = [];
-          const multiplier_paschoactive_array = [];
-          const multiplier_vitality_array = [];
-          const multiplier_headach_array = [];
-          const multiplier_insomnia_array = [];
-
-
-          console.log(model_relax);
-
-          // objectのvalueを取得
-          const model_relax_value = Object.values(model_relax);
-          const model_inflammation_value = Object.values(model_inflammation);
-          const model_paschoactive_value = Object.values(model_paschoactive);
-
-          // 文字列を数値に変換
-          const model_relax_array = model_relax_value.map(Number);
-          const model_inflammation_array = model_inflammation_value.map(Number);
-          const model_paschoactive_array = model_paschoactive_value.map(Number);
-
-          for (let i = 0; i < 4; i++) {
-            multiplier_relax_array.push(model_relax_array[i] * parameter_array[0]);
-            multiplier_inflammation_array.push(model_inflammation_array[i] * parameter_array[1]);
-            multiplier_paschoactive_array.push(model_paschoactive_array[i] * parameter_array[2]);
-            multiplier_vitality_array.push(model_relax_array[i] * parameter_array[3]);
-            multiplier_headach_array.push(model_inflammation_array[i] * parameter_array[4]);
-            multiplier_insomnia_array.push(model_paschoactive_array[i] * parameter_array[5]);
-          }
-
-          result_array[0] += Math.round((multiplier_relax_array[0] + multiplier_inflammation_array[0] + multiplier_paschoactive_array[0] + multiplier_vitality_array[0] + multiplier_headach_array[0] + multiplier_insomnia_array[0]) / 18);
-          result_array[1] += Math.round((multiplier_relax_array[1] + multiplier_inflammation_array[1] + multiplier_paschoactive_array[1] + multiplier_vitality_array[1] + multiplier_headach_array[1] + multiplier_insomnia_array[1]) / 18);
-          result_array[2] += Math.round((multiplier_relax_array[2] + multiplier_inflammation_array[2] + multiplier_paschoactive_array[2] + multiplier_vitality_array[2] + multiplier_headach_array[2] + multiplier_insomnia_array[2]) / 18);
-          result_array[3] += Math.round((multiplier_relax_array[3] + multiplier_inflammation_array[3] + multiplier_paschoactive_array[3] + multiplier_vitality_array[3] + multiplier_headach_array[3] + multiplier_insomnia_array[3]) / 18);
-          result_array[4] += 100 - (result_array[0] + result_array[1] + result_array[2] + result_array[3]);
-
-          console.log(result_array);
-          $('#cbd').val(result_array[0]);
-          $('#cbg').val(result_array[1]);
-          $('#cbn').val(result_array[2]);
-          $('#cbc').val(result_array[3]);
-          $('#telpen').val(result_array[4]);
-
-        });
 
       });
 

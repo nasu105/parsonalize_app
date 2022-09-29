@@ -34,6 +34,15 @@
           </div>
           </x-nav-link>
         </div>
+        <!-- 🔽 カートへのリンクを追加 -->
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+          <x-nav-link :href="route('user.mycart')" :active="request()->routeIs('user.mycart')">
+            <div>  
+            <p>{{ __('My cart') }}</p>
+            <p class="text-center">{{ __('カートの中身') }}</p>
+          </div>
+          </x-nav-link>
+        </div>
       </div>
 
       <!-- Settings Dropdown -->
@@ -101,6 +110,12 @@
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('user.item.index')" :active="request()->routeIs('user.item.index')">
         {{ __('Created Collection') }}
+      </x-responsive-nav-link>
+    </div>
+    <!-- 🔽 カートへのリンクを追加 -->
+    <div class="pt-2 pb-3 space-y-1">
+      <x-responsive-nav-link :href="route('user.mycart')" :active="request()->routeIs('user.mycart')">
+        {{ __('My cart') }}
       </x-responsive-nav-link>
     </div>
 

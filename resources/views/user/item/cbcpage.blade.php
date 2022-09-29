@@ -1,0 +1,1 @@
+<img src="{{ asset('img/Cannabinoids/CBC.JPG') }}">

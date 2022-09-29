@@ -7,7 +7,7 @@
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       <div>
         <p>{{ __('Confirmation') }}</p>
-        <p>注文確定</p>
+        <p>カスタマイズ詳細</p>
       </div>      
     </h2>
   </x-slot>
@@ -24,7 +24,7 @@
             <p>頭痛<label for="">{{$item->headache}}</label></p>
             <p>不眠<label for="">{{$item->insomnia}}</label></p>
           </div>
-          <form action="{{ route('user.item.update',$item->id) }}" method="POST">
+          <form action="{{ route('user.item.cart_add',$item->id) }}" method="POST">
             @method('put')
             @csrf
             <div>
@@ -32,7 +32,7 @@
               <input type="text" value="0" name="sum_price"  id="sum_price" readonly>
             </div>
             <div>
-              <button type="submit" id="order_button" class="order_button">注文確定</button>
+              <button type="submit" id="cart_button" class="cart_button">カートに追加</button>
             </div>
           </form>
           <div>
