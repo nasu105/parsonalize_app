@@ -29,7 +29,8 @@
             @csrf
             <div>
               <p>合計金額</p>
-              <input type="text" value="0" name="sum_price"  id="sum_price" readonly>
+              <input type="text" value="0" name="price"  id="price" readonly>
+              <input type="hidden" name="quantity" value="1">
             </div>
             <div>
               <button type="submit" id="cart_button" class="cart_button">カートに追加</button>
@@ -58,9 +59,9 @@
       drawChart(); // グラフ作成
       mixing_percent(); // 調合結果を作成
       // total_amount(result_array[0], result_array[1], result_array[2], result_array[3], result_array[4]);
-      const sum_price = total_amount(result_array[0], result_array[1], result_array[2], result_array[3], result_array[4]);
-      $('#sum_price').val(sum_price);
-      // console.log(sum_price);
+      const price = total_amount(result_array[0], result_array[1], result_array[2], result_array[3], result_array[4]);
+      $('#price').val(price);
+      // console.log(price);
       // console.log(result_array);
       // console.log(unit_price);
 
@@ -140,14 +141,14 @@
 
       
       function total_amount (cbd_num, cbg_num, cbn_num, cbc_num, terpene_num) { //　合計金額計算
-        let sum_price = 0;
+        let price = 0;
         const parameter_array = [cbd_num, cbg_num, cbn_num, cbc_num, terpene_num]; // 引数を配列に格納
 
         for (let i = 0; i <= 4; i++) {
-          sum_price += parameter_array[i] * unit_price[i];
+          price += parameter_array[i] * unit_price[i];
         }
 
-        return sum_price;
+        return price;
       }
 
 

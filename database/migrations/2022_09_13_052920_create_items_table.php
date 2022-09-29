@@ -22,9 +22,10 @@ return new class extends Migration
             $table->integer('vitality');
             $table->integer('headache');
             $table->integer('insomnia');
+            $table->integer('quantity')->default(0);
             $table->integer('cart_flg')->default(false);
             $table->boolean('order_flg')->default(false);
-            $table->integer('sum_price')->default(0);
+            $table->integer('price')->default(0);
             $table->integer('star')->default(false);
             $table->timestamps();
         });

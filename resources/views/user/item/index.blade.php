@@ -43,7 +43,7 @@
                   echo date('Y年n月j日', strtotime($updated_at));
                   ?>
                 </td>
-                @if($item-> sum_price != 0)
+                @if($item-> price != 0)
                 <!-- 星レビューボタン -->
                   <form action="{{ route('user.item.update', $item->id) }}" method="POST" 
                   name="rate-form" id="rate-form{{$item->id}}" >

@@ -19,7 +19,7 @@
             <p>活力       {{$order_item->vitality}}</p>
             <p>頭痛       {{$order_item->headache}}</p>
             <p>不眠       {{$order_item->insomnia}}</p>
-            <p>金額       {{$order_item->sum_price}}</p>
+            <p>金額       {{$order_item->price}}</p>
           </div>
           <div>
           <h1>調合成分結果</h1>
@@ -68,7 +68,7 @@
 
       mixing_percent(); // 調合結果を作成
       // total_amount(result_array[0], result_array[1], result_array[2], result_array[3], result_array[4]);
-      // console.log(sum_price);
+      // console.log(price);
       // console.log(result_array);
       // console.log(unit_price);
 

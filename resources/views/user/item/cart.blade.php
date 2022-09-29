@@ -42,7 +42,7 @@
                   echo date('Y年n月j日', strtotime($updated_at));
                   ?>
                 </td>
-                <td>{{ $item->sum_price }}</td>
+                <td>{{ $item->price }}</td>
               </tr>
               @endforeach
             </tbody>
@@ -60,7 +60,7 @@
     $(function () {
       const items = @json($items); // phpdateをjsに変更
       // console.log(items);
-      const price_array = items.map((obj) => obj.sum_price); // priceだけを格納
+      const price_array = items.map((obj) => obj.price); // priceだけを格納
       // console.log(price_array);
       const total_price = price_array.reduce((a, b) => {
         return a + b;

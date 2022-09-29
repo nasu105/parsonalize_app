@@ -112,9 +112,9 @@ class ItemController extends Controller
     {
         // ddd($request);
         // $result = Item::find($id)->save(['order_flg' => true]);
-        // $price = $request->sum_price;
+        // $price = $request->price;
         // ddd($price);
-        // $result_price = Item::find($id)->save(['sum_price' => $price]);
+        // $result_price = Item::find($id)->save(['price' => $price]);
         /* if ($request->star == 0) {
             $result = Item::find($id)->update($request->all());
             $reault_price = Item::find($id)->update(['cart_flg' => true]);
@@ -155,9 +155,9 @@ class ItemController extends Controller
         return redirect()->route('user.item.index');
     }
 
-    public function mycart()
+    public function cart()
     {
-        // ddd('mycart');
+        // ddd('cart');
         $items = User::query()
             ->find(Auth::user()->id)
             ->userItems()
@@ -165,7 +165,7 @@ class ItemController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         // ddd($items);
-        return view('user.item.mycart', compact('items'));
+        return view('user.item.cart', compact('items'));
     }
 
     public function cart_add (Request $request, $id)
@@ -174,7 +174,40 @@ class ItemController extends Controller
         // ddd($id);
         $result = Item::find($id)->update($request->all());
         $cart_flg = Item::find($id)->update(['cart_flg' => true]);
-        return redirect()->route('user.mycart');
+        return redirect()->route('user.cart');
+    }
+
+    public function checkout() {
+        $items = User::query()
+            ->find(Auth::user()->id)
+            ->userItems()
+            ->where('cart_flg', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // ddd($items);
+
+        $lineItems = [];
+        foreach($items as $item) {
+            $lineItem = [
+                'name' => $item->id,
+                'amount' => $item->price,
+                'currency' => 'jpy',
+                'quantity' => $item->quantity,
+            ];
+            array_push($lineItems, $lineItem);
+        }
+        // dd($lineItems);
+
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $session = \Stripe\Checkout\Session::create([
+            'payment_mehot_types' => ['card'], // documentに記載がない部分(Udemyではある,stripeのバージョンが違うため)
+            'line_items' => [$lineItems],
+            'mode' => 'payment',
+            'success_url' => route('user.item.index'),
+            'cancel_url' => route('user.cart'),
+        ]);
     }
 
 }
