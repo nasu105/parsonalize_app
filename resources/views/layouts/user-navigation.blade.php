@@ -5,17 +5,18 @@
       <div class="flex">
         <!-- Logo -->
         <div class="flex-shrink-0 flex items-center">
-          <a href="{{ route('user.dashboard') }}">
-            <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+          <a href="{{ route('user.item.create') }}">
+            {{--<!-- <x-application-logo class="block h-10 w-auto fill-current text-gray-600" /> -->--}}
+            <img src="{{ asset('img/ayday_logo_black.png')}}" alt="" width="64">
           </a>
         </div>
 
         <!-- Navigation Links -->
-        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+        <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
             {{ __('Dashboard') }}
           </x-nav-link>
-        </div>
+        </div> -->
         <!-- 🔽 作成ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('user.item.create')" :active="request()->routeIs('user.item.create')">
@@ -30,7 +31,7 @@
           <x-nav-link :href="route('user.item.index')" :active="request()->routeIs('user.item.index')">
             <div>  
             <p>{{ __('Created Collection') }}</p>
-            <p class="text-center">{{ __('過去の作成物') }}</p>
+            <p class="text-center">{{ __('注文履歴') }}</p>
           </div>
           </x-nav-link>
         </div>

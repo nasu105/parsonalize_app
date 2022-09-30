@@ -32,7 +32,7 @@
           <div id="close"></div>   
           <div id="navi">
             <ul>
-              <li><a href="index.html">ホーム</a></li>
+              <li><a href="">ホーム</a></li>
               <li><a href="#1">CBDについて</a></li>
               <li><a href="#2">パーソナライズサービス</a></li>
               <!-- <li><a href="#3">申し込みの流れ</a></li> -->
@@ -77,7 +77,8 @@
           @auth('users')
             <a href="{{ route('user.creat') }}" class="lp-c-button lp-c-button-large">調合開始</a>
           @else
-            <a href="{{ route('user.login') }}" class="lp-c-button lp-c-button-large">調合開始</a>
+            <!-- <a href="{{ route('user.login') }}" class="lp-c-button lp-c-button-large">調合開始</a> -->
+            <a href="{{ route('user.register') }}" class="lp-c-button lp-c-button-large">調合開始</a>
           @endauth
         @endif
       </div>
