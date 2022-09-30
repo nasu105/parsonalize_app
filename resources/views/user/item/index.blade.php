@@ -87,8 +87,9 @@
       for (let i = 0; i < items.length; i++) { // item_id,star_valを空配列に格納
         let obj = items[i];
         let item = Object.values(obj);
+        console.log(item);
         item_id_array.push(item[0]);
-        star_val_array.push(item[10]);
+        star_val_array.push(item[12]);
       }
       
       console.log(item_id_array);

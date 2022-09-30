@@ -25,6 +25,11 @@ class Item extends Model
         return $this->belongsTomany(User::class)->withTimestamps();
     }
 
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
+
     // public static function getAllOrderByUpdated_at()
     // {
     //     return self::orderBy('updated_at', 'desc')->get();

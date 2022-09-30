@@ -22,6 +22,7 @@ class ItemController extends Controller
         $items = User::query()     
         ->find(Auth::user()->id)
         ->userItems()
+        ->where('created_order_flg', true)
         ->orderBy('created_at', 'desc')
         ->get();
         // ddd($items);
@@ -126,9 +127,9 @@ class ItemController extends Controller
             $result = Item::find($id)->update(['star' => $star]);
             return redirect()->route('user.item.index');
         } */
-        ddd($request);
+        // ddd($request);
         $result = Item::find($id)->update($request->all());
-        $cart_flg = Item::find($id)->update(['cart_flg' => true]);
+        // $cart_flg = Item::find($id)->update(['cart_flg' => true]);
         return redirect()->route('user.item.index');
     }
 
@@ -253,8 +254,9 @@ class ItemController extends Controller
         ->where('cart_flg', 1)
         ->get();
 
-        foreach($items as $item) { // cart商品を消す,order_flgを立てる
+        foreach($items as $item) { // cart商品を消す,order_flgを立てる,created_order_flgを立てる
             $cart_flg = Item::find($item->id)->update(['cart_flg' => false]);
+            $created_order_flg = Item::find($item->id)->update(['created_order_flg' => true]);
             $order_flg = Item::find($item->id)->update(['order_flg' => true]);
         }
 

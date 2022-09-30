@@ -39,6 +39,8 @@
             TERPENE<span id="terpene"></span>
           </p>
           </div>
+          <div>購入者情報</div>
+          <p>{{$order_item->user->name}}</p>
           <div>
             <a href="{{ route('admin.usersitem.index') }}" class="block text-center w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
               対応済

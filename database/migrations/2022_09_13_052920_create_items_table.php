@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('order_flg')->default(false);
             $table->integer('price')->default(0);
             $table->integer('star')->default(false);
+            $table->integer('created_order_flg')->default(false);
             $table->timestamps();
         });
     }
