@@ -14,21 +14,35 @@
 
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
+                <x-input-label for="name" :value="__('お名前')" />
 
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
+                <x-input-label for="email" :value="__('Eメール')" />
 
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
+            <!-- Phone -->
+            <div class="mt-4">
+                <x-input-label for="phone" :value="__('携帯電話番号')" />
+
+                <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
+            </div>
+
+            <!-- Address -->
+            <div class="mt-4">
+                <x-input-label for="address" :value="__('住所')" />
+
+                <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('パスワード')" />
 
                 <x-text-input id="password" class="block mt-1 w-full"
                                 type="password"
@@ -38,7 +52,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-input-label for="password_confirmation" :value="__('パスワード確認')" />
 
                 <x-text-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"

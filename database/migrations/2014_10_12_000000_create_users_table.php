@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone'); // 電話番号追加
+            $table->string('address'); // 住所
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
