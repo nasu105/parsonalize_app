@@ -75,7 +75,7 @@
 
         @if (Route::has('user.login'))
           @auth('users')
-            <a href="{{ route('user.creat') }}" class="lp-c-button lp-c-button-large">調合開始</a>
+            <a href="{{ route('user.item.create') }}" class="lp-c-button lp-c-button-large">調合開始</a>
           @else
             <!-- <a href="{{ route('user.login') }}" class="lp-c-button lp-c-button-large">調合開始</a> -->
             <a href="{{ route('user.register') }}" class="lp-c-button lp-c-button-large">調合開始</a>

@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth:admin'], function() {
     // Route::get('/item/buyCheck', [ItemController::class, 'buyCheck'])->name('item.buyCheck');
+    Route::get('usersitem/supported_show/{item}', [UsersItemController::class, 'supported_show'])->name('usersitem.supported_show');
+    Route::get('usersitem/supported_index', [UsersItemController::class, 'supported_index'])->name('usersitem.supported_index');
     Route::resource('usersitem', UsersItemController::class);
 });
 

@@ -3,7 +3,7 @@
 
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Show Tweet Detail') }}
+      {{ __('対応済商品詳細') }}
     </h2>
   </x-slot>
 
@@ -48,12 +48,12 @@
             @method('put')
             @csrf
             <div>
-              <button type="submit" class="block text-center w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+              <!-- <button type="submit" class="block text-center w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                 対応済
-              </button>
+              </button> -->
             </div>
             <div>
-              <a href="{{ route('admin.usersitem.index') }}" class="block text-center w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+              <a href="{{ route('admin.usersitem.supported_index') }}" class="block text-center w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                 Back
               </a>
             </div>
@@ -126,10 +126,6 @@
         document.getElementById('terpene').textContent = ' ' + result_array[4] + '%';
 
       }
-
-
-      
-
 
     });
   </script>

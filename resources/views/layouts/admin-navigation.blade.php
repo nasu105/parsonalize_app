@@ -13,7 +13,14 @@
         <!-- 🔽 一覧ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('admin.usersitem.index')" :active="request()->routeIs('admin.usersitem.index')">
-            {{ __('Index') }}
+            {{ __('注文一覧') }}
+          </x-nav-link>
+        </div>
+
+        <!-- 🔽 対応済み商品ページへのリンクを追加 -->
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+          <x-nav-link :href="route('admin.usersitem.supported_index')" :active="request()->routeIs('admin.usersitem.supported_index')">
+            {{ __('対応済商品一覧') }}
           </x-nav-link>
         </div>
       </div>

@@ -3,7 +3,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('注文商品一覧') }}
+      {{ __('対応済商品一覧') }}
     </h2>
   </x-slot>
 
@@ -31,7 +31,7 @@
               @foreach ($order_items as $order_item)
               <tr>
                 <!-- 詳細画面へのリンク -->
-                  <td><a href="{{ route('admin.usersitem.show',$order_item->id) }}">{{ $order_item->id }}</a></td>
+                  <td><a href="{{ route('admin.usersitem.supported_show',$order_item->id) }}">{{ $order_item->id }}</a></td>
                   <!-- <td>{{ $order_item->relax }}</td>
                   <td>{{ $order_item->inflammation }}</td>
                   <td>{{ $order_item->paschoactive }}</td>
@@ -39,7 +39,7 @@
                   <td>{{ $order_item->headache }}</td>
                   <td>{{ $order_item->insomnia }}</td> -->
                   <td>
-                    <a href="{{ route('admin.usersitem.show',$order_item->id) }}">
+                    <a href="{{ route('admin.usersitem.supported_show',$order_item->id) }}">
                       <?php 
                       $updated_at = $order_item->created_at;
                       echo date('Y年n月j日', strtotime($updated_at));

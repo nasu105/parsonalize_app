@@ -60,14 +60,21 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.login') }}">
+                {{--<!-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.login') }}">
                     {{ __('ログイン画面') }}
-                </a>
-
+                </a> -->--}}
+                
                 <x-primary-button class="ml-4">
                     {{ __('新規作成') }}
                 </x-primary-button>
-            </div>
         </form>
+        <form action="{{ route('user.login')}}">
+                <x-primary-button class="ml-4">
+                    {{ __('ログイン画面') }}
+                </x-primary-button>
+        </form>
+
+            </div>
+        
     </x-auth-card>
 </x-guest-layout>
