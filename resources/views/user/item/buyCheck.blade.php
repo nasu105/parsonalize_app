@@ -2,46 +2,60 @@
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+  <link rel="stylesheet" href="{{ asset('css/buycheck.css') }}">
 
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       <div>
         <p>{{ __('Confirmation') }}</p>
-        <p>カスタマイズ詳細</p>
+        <p>パーソナライズ結果</p>
       </div>      
     </h2>
   </x-slot>
 
   <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
-      <div class="bg-white overflow-hiddn shadow-sm sm:rounded-lg">
-        <div class="bg-white border-b border-gray-200">
-          <div result_content>
-            <p>リラックス<label for="">{{$item->relax}}</label></p>
-            <p>炎症鎮痛<label for="">{{$item->inflammation}}</label></p>
-            <p>精神作用<label for="">{{$item->paschoactive}}</label></p>
-            <p>活力<label for="">{{$item->vitality}}</label></p>
-            <p>頭痛<label for="">{{$item->headache}}</label></p>
-            <p>不眠<label for="">{{$item->insomnia}}</label></p>
-          </div>
-          <form action="{{ route('user.item.cart_add',$item->id) }}" method="POST">
-            @method('put')
-            @csrf
-            <div>
-              <p>合計金額</p>
-              <input type="text" value="0" name="price"  id="price" readonly>
-              <input type="hidden" name="quantity" value="1">
+    <!-- <div class="mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12"> -->
+      <!-- <div class="bg-white overflow-hiddn shadow-sm sm:rounded-lg">
+        <div class="bg-white border-b border-gray-200"> -->
+          <div class="flex">
+            <div class="main_box">
+              <div class="main_content">
+                <div class="palametor">
+                  <div class="custmaize_result">
+                    <p>PERSONALIZE RESULT</p>
+                  </div>
+                  <div>
+                    <p>リラックス<label for="">{{$item->relax}}</label></p>
+                    <p>炎症鎮痛<label for="">{{$item->inflammation}}</label></p>
+                    <p>精神作用<label for="">{{$item->paschoactive}}</label></p>
+                    <p>集中力<label for="">{{$item->vitality}}</label></p>
+                    <p>頭痛<label for="">{{$item->headache}}</label></p>
+                    <p>入眠<label for="">{{$item->insomnia}}</label></p>
+                  </div>
+                </div>
+                <form action="{{ route('user.item.cart_add',$item->id) }}" method="POST">
+                  @method('put')
+                  @csrf
+                  <!-- <div class="price_content"> -->
+                    <div class="price_content"></div>
+                    <div class="price_content1">
+                      <label for="">¥</label><input class="total_price" type="text" value="0" name="price"  id="price" readonly size="10">
+                      <input type="hidden" name="quantity" value="1">
+                    </div>
+                    <div class="price_content2">
+                      <button type="submit" id="cart_button" class="cart_button">カートに追加</button>
+                    </div>
+                  <!-- </div> -->
+                </form>
+              </div>
             </div>
-            <div>
-              <button type="submit" id="cart_button" class="cart_button">カートに追加</button>
+            <div class="w-full mt-6 mr-3">
+              <canvas id="myChart"></canvas>
             </div>
-          </form>
-          <div>
-            <canvas id="myChart"></canvas>
           </div>
-        </div>
-      </div>
-    </div>
+        <!-- </div>
+      </div> -->
+    <!-- </div> -->
   </div>
 
   <script>

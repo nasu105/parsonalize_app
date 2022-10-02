@@ -22,3 +22,26 @@
 .star-form input[type=radio]:checked ~ label {
   color: #ffcc00;
 }
+
+.item_title {
+  font-weight: 900;
+}
+
+.item_box {
+  display: flex;
+  width: 500px;
+  padding: 1rem 2rem;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+  margin-right: 100px;
+  margin-bottom: 30px;
+}
+
+.item_discription {
+  margin-left: 5%;
+}
+
+.item_price {
+  margin-right: 5%;
+  font-weight: 900;
+}

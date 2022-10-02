@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head> 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ asset('css/create.style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/css/jquery.mb.YTPlayer.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/jquery.mb.YTPlayer.min.js"></script>
 </head>
 
 <body>
   <x-app-layout>
-    <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Pasonarize Create') }}
-      </h2>
-    </x-slot>
 
-    <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
-        <div class="bg-white overflow-hiddn shadow-sm sm:rounded-lg">
-          <div class="bg-white border-b border-gray-200">
+    <div class="py-0">
+
+
+      <!-- <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12"> -->
+        <div class="overflow-hiddn shadow-sm sm:rounded-lg">
+          <div class="border-b border-gray-200">
             <form action="{{ route('user.item.store') }}" method="POST">
               @csrf
               <div>
-                <div>
-                  <div class="mixing_content">
+
+
+                <!-- パラメーター -->
+                <div class="flex justify-center">
+                <div class="mixing_content">
                     <div class="relax_content">
                       <label for="relax">リラックス</label>
                       <p>
                         <input type="number" id="relax" name="relax" class="sm:rounded-lg" data-min="0" data-max="18"
                           value="3" readonly>
+                      </p>
+                      <p>
                         <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".relax"
                           id="relax_plus_button">
                         <input type="button" value="-" class="btnspinner" data-cal="-1" data-target=".relax"
@@ -43,6 +48,8 @@
                       <p>
                         <input type="number" id="inflammation" name="inflammation" class="sm:rounded-lg" data-min="0"
                           data-max="18" value="3" readonly>
+                      </p>
+                      <p>
                         <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".inflammation"
                           id="inflammation_plus_button">
                         <input type="button" value="-" class="btnspinner" data-cal="-1" data-target=".inflammation"
@@ -54,6 +61,8 @@
                       <p>
                         <input type="number" id="paschoactive" name="paschoactive" class="sm:rounded-lg" data-min="0"
                           data-max="18" value="3" readonly>
+                      </p>
+                      <p>
                         <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".paschoactive"
                           id="paschoactive_plus_button">
                         <input type="button" value="-" class="btnspinner" data-cal="-1" data-target=".paschoactive"
@@ -61,10 +70,12 @@
                       </p>
                     </div>
                     <div class="vitality_content">
-                      <label for="vitality">活力</label>
+                      <label for="vitality">集中力</label>
                       <p>
                         <input type="number" id="vitality" name="vitality" class="sm:rounded-lg" data-min="0"
                           data-max="18" value="3" readonly>
+                      </p>
+                      <p>
                         <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".vitality"
                           id="vitality_plus_button">
                         <input type="button" value="-" class="btnspinner" data-cal="-1" data-target=".vitality"
@@ -76,6 +87,8 @@
                       <p>
                         <input type="number" id="headache" name="headache" class="sm:rounded-lg" data-min="0"
                           data-max="18" value="3" readonly>
+                      </p>
+                      <p>
                         <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".headache"
                           id="headache_plus_button">
                         <input type="button" value="-" class="btnspinner" data-cal="-1" data-target=".headache"
@@ -83,19 +96,24 @@
                       </p>
                     </div>
                     <div class="insomnia_content">
-                      <label for="insomnia">不眠</label>
+                      <label for="insomnia">入眠</label>
                       <p>
                         <input type="number" id="insomnia" name="insomnia" class="sm:rounded-lg" data-min="0"
                           data-max="18" value="3" readonly>
+                      </p>
+                      <p>
                         <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".insomnia"
                           id="insomnia_plus_button">
                         <input type="button" value="-" class="btnspinner" data-cal="-1" data-target=".insomnia"
                           id="insomnia_sub_button">
                       </p>
                     </div>
-                    <input type="hiden" value="0" name="order">
+                    <input type="hidden" value="0" name="order">
                   </div>
-                  <div>
+
+
+                  <!-- グラフ -->
+                  <div class="w-full mt-6 mr-3">
                     <canvas id="myChart"></canvas>
                   </div>
                 </div>
@@ -106,11 +124,21 @@
             </form>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
+        <div id="ytPlayer" data-property="{
+      videoURL: 'https://youtu.be/JouMAHQXx-g',
+      autoPlay: true,
+      loop: 1,
+      mute: true,
+      showControls: false,
+      showYTLogo: false,
+    }">
 
     <script>
       $(function () {
+
+        $("#ytPlayer").YTPlayer(); //youtubeリンク対応
 
         let ctx_relax_num = Number($("#relax").val());
         let ctx_inflammation_num = Number($('#inflammation').val());
@@ -492,11 +520,13 @@
 
         // グラフ作成(chartjs)
         function drawChart() {
+          // Chart.defaults.default.fontcolor = 'red';
+          // Chart.defaults.global.defaultFontColor = 'red';
           let ctx = document.getElementById("myChart");
           window.myChart = new Chart(ctx, { // インスタンスをグローバル変数で作成
             type: 'radar',
             data: {
-              labels: ["リラックス", "炎症鎮痛", "精神作用", "活力", "頭痛", "不眠"],
+              labels: ["リラックス", "炎症鎮痛", "精神作用", "活力", "頭痛", "入眠"],
               datasets: [{
                 label: "パラメーター値",
                 data: [ctx_parameter_array[0],
@@ -511,16 +541,24 @@
               }]
             },
             options: {
-              scales: {
-                r: {
-                  max: 18,        //グラフの最大値
-                  min: 0,        //グラフの最小値
-                  ticks: {
-                    stepSize: 3  //目盛間隔
-                  }
+              legend: {
+                labels: {
+                    // This more specific font property overrides the global property
+                    fontColor: 'black'
                 }
-              },
+              }
             }
+            // options: {
+              // scales: {
+              //   r: {
+              //     max: 18,        //グラフの最大値
+              //     min: 0,        //グラフの最小値
+              //     ticks: {
+              //       stepSize: 6  //目盛間隔
+              //     }
+              //   }
+              // },
+            // }
           });
         }
 

@@ -1,0 +1,45 @@
+ul{
+display: table;
+margin: 0 auto;
+padding: 0;
+width: 80%;
+text-align: center;
+}
+ul li{
+display: table-cell;
+min-width: 50px;
+}
+ul li a{
+display: block;
+width: 100%;
+padding: 10px 0;
+text-decoration: none;
+color: white;
+font-weight: bold;
+}
+ul li.current{
+background-color: #DEEBF7;
+}
+ul li.current a{
+color: #555;
+}
+ul li:hover{
+  background: #9b59b6;
+  border-radius: 10px;
+
+}
+
+nav {
+  background-color: black;
+}
+
+.logo {
+  background-color: black;
+  text-align: center;
+}
+
+.logo_img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

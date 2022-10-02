@@ -9,70 +9,61 @@
 
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
-      <div class="bg-white overflow-hiddn shadow-sm sm:rounded-lg">
-        <div class="bg-white border-b border-gray-200">
-          <table class="table table-striped">
-            <thead>
-              <!-- 見出し作成-->
-              <tr>
-                <th>調合ナンバー</th>
-                <th>リラックス</th>
-                <th>炎症鎮痛</th>
-                <th>精神作用</th>
-                <th>活力</th>
-                <th>頭痛</th>
-                <th>不眠</th>
-                <th>作成日時</th>
-              </tr>
-            </thead>
+      <!-- <div class="bg-white overflow-hiddn shadow-sm sm:rounded-lg"> -->
+        
+        @if (count($items) == false) 
+          過去の注文がありません。
+        @else
 
-            <tbody>
-              <!-- 作成済の商品を作成-->
-              @foreach ($items as $item)
-              <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->relax }}</td>
-                <td>{{ $item->inflammation }}</td>
-                <td>{{ $item->paschoactive }}</td>
-                <td>{{ $item->vitality }}</td>
-                <td>{{ $item->headache }}</td>
-                <td>{{ $item->insomnia }}</td>
-                <td>
+          <!-- 作成済の商品を作成-->
+          <div>
+            @foreach ($items as $item)
+              <div class="item_box">
+                <div class="item_discription">
+
+                
+                  <h1 class="item_title">PERSONALIZE LIQUID 1ml</h1>
+                  <p>リラックス{{ $item->relax }}</p>
+                  <p>炎症鎮痛{{ $item->inflammation }}</p>
+                  <p>精神作用{{ $item->paschoactive }}</p>
+                  <p>活力{{ $item->vitality }}</p>
+                  <p>頭痛{{ $item->headache }}</p>
+                  <p>不眠{{ $item->insomnia }}</p>
+                  <!-- <p>
                   <?php 
                   $updated_at = $item->created_at;
                   echo date('Y年n月j日', strtotime($updated_at));
-                  ?>
-                </td>
-                @if($item-> price != 0)
-                <!-- 星レビューボタン -->
+                  ?></p> -->
+                  <!-- 星レビューボタン -->
                   <form action="{{ route('user.item.update', $item->id) }}" method="POST" 
                   name="rate-form" id="rate-form{{$item->id}}" >
                     @method('put')
                     @csrf 
-                    <td>
-                      <div class="star-form">
-                        <input id="{{$item->id}}star5" type="radio" name="star" value="5" onclick="document.rate-form.submit();">
-                        <label for="{{$item->id}}star5">★</label>
-                        <input id="{{$item->id}}star4" type="radio" name="star" value="4" onclick="document.rate-form.submit();">
-                        <label for="{{$item->id}}star4">★</label>
-                        <input id="{{$item->id}}star3" type="radio" name="star" value="3" onclick="document.rate-form.submit();">
-                        <label for="{{$item->id}}star3">★</label>
-                        <input id="{{$item->id}}star2" type="radio" name="star" value="2" onclick="document.rate-form.submit();">
-                        <label for="{{$item->id}}star2">★</label>
-                        <input id="{{$item->id}}star1" type="radio" name="star" value="1" onclick="document.rate-form.submit();">
-                        <label for="{{$item->id}}star1">★</label>
-                        <input type="hidden" value="{{$item->id}}" name="item_id"> 
-                      </div>
-                    </td>
+                    <div class="star-form">
+                      <input id="{{$item->id}}star5" type="radio" name="star" value="5" onclick="document.rate-form.submit();">
+                      <label for="{{$item->id}}star5">★</label>
+                      <input id="{{$item->id}}star4" type="radio" name="star" value="4" onclick="document.rate-form.submit();">
+                      <label for="{{$item->id}}star4">★</label>
+                      <input id="{{$item->id}}star3" type="radio" name="star" value="3" onclick="document.rate-form.submit();">
+                      <label for="{{$item->id}}star3">★</label>
+                      <input id="{{$item->id}}star2" type="radio" name="star" value="2" onclick="document.rate-form.submit();">
+                      <label for="{{$item->id}}star2">★</label>
+                      <input id="{{$item->id}}star1" type="radio" name="star" value="1" onclick="document.rate-form.submit();">
+                      <label for="{{$item->id}}star1">★</label>
+                      <input type="hidden" value="{{$item->id}}" name="item_id"> 
+                    </div>
                   </form>
-                @endif                  
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+                </div>
+                <div class="item_price">
+                  <p>¥{{ $item->price }}</p>
+                </div>
+              </div>            
+            @endforeach
+          </div>
+        @endif
 
-        </div>
-      </div>
+        
+      <!-- </div> -->
     </div>
   </div>
   <script>

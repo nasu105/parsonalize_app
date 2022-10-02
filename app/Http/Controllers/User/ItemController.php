@@ -141,7 +141,9 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // ddd($id);
+        $result = Item::find($id)->delete();
+        return redirect()->route('user.cart');
     }
 
     public function stars(Request $request) 
@@ -221,7 +223,7 @@ class ItemController extends Controller
                 'price_data' => [
                     'currency' => 'jpy',
                     'product_data' => [
-                        'name' => $item->id,
+                        'name' => 'PERSONALIZE LIQUID 1ml',
                     ],
                     'unit_amount' => $item->price,
                 ],

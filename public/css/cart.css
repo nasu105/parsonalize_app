@@ -1,0 +1,167 @@
+.main_content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.item_title {
+  font-weight: 900;
+}
+
+.item_content {
+  /* display: flex; */
+}
+
+.item_box {
+  /* display: flex; */
+  width: 450px;
+  padding: 1rem 2rem;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+  margin-right: 100px;
+  margin-bottom: 30px;
+}
+
+.item_child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item_discription {
+  margin-left: 5%;
+}
+
+.item_price {
+  margin-right: 5%;
+  font-weight: 900;
+}
+
+.total_price {
+  border: none;
+  outline: none;
+  font-weight: 900;
+}
+
+/* レジに進むボタン */
+.buy_button {
+  --color: #065e48;
+  padding: 0.8em 1.7em;
+  background-color: transparent;
+  border-radius: .3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .5s;
+  font-weight: 700;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+}
+
+.buy_button::before,
+.buy_button::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: var(--color);
+  transition: 1s ease;
+}
+
+.buy_button::before {
+  top: -1em;
+  left: -1em;
+}
+
+.buy_button::after {
+  top: calc(100% + 1em);
+  left: calc(100% + 1em);
+}
+
+.buy_button:hover::before,
+.buy_button:hover::after {
+  width: 410px;
+  height: 410px;
+}
+
+.buy_button:hover {
+  color: rgb(10, 25, 30);
+}
+
+.buy_button:active {
+  filter: brightness(.8); 
+}
+
+/* 削除ボタン */
+.delete_button {
+  --color: #065e48;
+  padding: 0.2em 1em;
+  background-color: transparent;
+  border-radius: .3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .5s;
+  font-weight: 700;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+}
+
+.delete_button::before,
+.delete_button::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: var(--color);
+  transition: 1s ease;
+}
+
+.delete_button::before {
+  top: -1em;
+  left: -1em;
+}
+
+.delete_button::after {
+  top: calc(100% + 1em);
+  left: calc(100% + 1em);
+}
+
+.delete_button:hover::before,
+.delete_button:hover::after {
+  width: 410px;
+  height: 410px;
+}
+
+.delete_button:hover {
+  color: rgb(10, 25, 30);
+}
+
+.delete_button:active {
+  filter: brightness(.8); 
+}
+
+.price_delete {
+  width: 100px;
+  position: relative;
+}
+
+.delete_content {
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+}
