@@ -58,9 +58,9 @@ p {
 
 .chart {
     position: absolute;
-    left: 0;
+    left: 20%;
     right: 0;
-    margin: auto;
+    /* margin: auto; */
 }
 
 /* .price_content_buttons {
