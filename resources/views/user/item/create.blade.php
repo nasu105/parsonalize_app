@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="{{ asset('css/create.style.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/css/jquery.mb.YTPlayer.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/jquery.mb.YTPlayer.min.js"></script>
 
 
@@ -117,7 +117,7 @@
       </div>
     <!-- </div> -->
   </div>
-      <div id="ytPlayer" data-property="{
+  <div id="ytPlayer" data-property="{
     videoURL: 'https://youtu.be/JouMAHQXx-g',
     autoPlay: true,
     loop: 1,

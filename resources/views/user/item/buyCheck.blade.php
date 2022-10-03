@@ -1,17 +1,11 @@
-<x-app-layout>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
   <link rel="stylesheet" href="{{ asset('css/buycheck.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/css/jquery.mb.YTPlayer.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/jquery.mb.YTPlayer.min.js"></script>
 
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      <div>
-        <p>{{ __('Confirmation') }}</p>
-        <p>パーソナライズ結果</p>
-      </div>      
-    </h2>
-  </x-slot>
+<x-app-layout>
 
   <div class="py-12">
     <!-- <div class="mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12"> -->
@@ -39,7 +33,7 @@
                   <!-- <div class="price_content"> -->
                     <div class="price_content"></div>
                     <div class="price_content1">
-                      <label for="">¥</label><input class="total_price" type="text" value="0" name="price"  id="price" readonly size="10">
+                      <label for="">¥</label><input class="total_price" type="text" value="0" name="price"  id="price" readonly size="10" style="background-color: transparent;">
                       <input type="hidden" name="quantity" value="1">
                     </div>
                     <div class="price_content2">
@@ -49,17 +43,30 @@
                 </form>
               </div>
             </div>
-            <div class="w-full mt-6 mr-3">
-              <canvas id="myChart"></canvas>
+            <div class="w-full mt-6 mr-3 text-center">
+              <div style="position:relative;width:700px;height:700px;" class="chart">
+                <canvas id="myChart"></canvas>
+              </div>
             </div>
           </div>
         <!-- </div>
       </div> -->
     <!-- </div> -->
   </div>
+  <div id="ytPlayer" data-property="{
+    videoURL: 'https://youtu.be/JouMAHQXx-g',
+    autoPlay: true,
+    loop: 1,
+    mute: true,
+    showControls: false,
+    showYTLogo: false,
+  }">
 
   <script>
     $(function () {
+
+      $("#ytPlayer").YTPlayer(); //youtubeリンク対応
+
       const item = @json($item); // phpデータをjsデータに変換
       const a = Object.values(item); // valuesだけを格納
       const result = a.splice(0, 6); // parameterの値だけを格納
