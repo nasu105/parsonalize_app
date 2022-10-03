@@ -2,7 +2,7 @@
 <!-- Logo -->
 <div class="logo">
   <a href="{{ route('user.item.create') }}">
-    <img src="{{ asset('img/ayday_logo_transparency.png')}}" alt="" width="72" heigth="72" class="logo_img">
+    <img src="{{ asset('img/ayday_logo_transparency.PNG')}}" alt="" width="72" heigth="72" class="logo_img">
   </a>
 </div>
 <nav x-data="{ open: false }">
