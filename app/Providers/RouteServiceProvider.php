@@ -7,6 +7,10 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Admin\UsersItemController;
+use App\Http\Controllers\Admin\UsersItemController;
+
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -19,6 +23,32 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/user/item/create';
     public const ADMIN_HOME = '/admin/dashboard';
+    // public const ADMIN_HOME = route('admin/usersitem/index');
+    // public const ADMIN_HOME = route('admin/usersitem/index');
+    // public const ADMIN_HOME = 'redirects';
+
+    /* public function __construct() {
+        $this->ADMIN_HOME = (route('admin.usersitem.index')) ->ADMIN_HOME;
+        // $this->ADMIN_HOME = 'admin/usersitem/index' ->ADMIN_HOME;
+        // $order_items = Item::query()
+        //     ->where('order_flg','1')
+        //     ->orderBy('created_at', 'desc')
+        //     ->get();
+    } */
+
+    /* public function __construct(Router $router)
+    {
+        // ルートパラメータを取得する
+        $routeParamName = 'prefecture_slug';
+        $defaultValue = null;
+        $routeParam = $router->getCurrentRoute()->getParameter($paramName, $defaultValue)
+        
+        // 全てのルートパラメータを取得したい場合は以下のようにする
+        $allRouteParams = $router->getCurrentRoute()->parameters();
+    } */
+    
+
+
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

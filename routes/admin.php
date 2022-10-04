@@ -45,7 +45,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+    // return view('admin.dashboard');
+    return redirect() -> route('admin.usersitem.index');
 })->middleware(['auth:admin'])->name('dashboard.admin');
 
 Route::middleware('guest')->group(function () {
