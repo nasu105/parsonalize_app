@@ -11,7 +11,7 @@
     <!-- <div class="mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12"> -->
       <!-- <div class="bg-white overflow-hiddn shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200"> -->
-          <div class="flex">
+          <div class="buy_main_content">
             <div class="main_box">
               <div class="main_content">
                 <div class="palametor">
@@ -54,7 +54,7 @@
     <!-- </div> -->
   </div>
   <div id="ytPlayer" data-property="{
-    videoURL: 'https://youtu.be/JouMAHQXx-g',
+    videoURL: 'https://www.youtube.com/watch?v=6TDvzv6mQic',
     autoPlay: true,
     loop: 1,
     mute: true,
@@ -108,13 +108,14 @@
           options: {
             scales: {
               r: {
-                max: 18,        //グラフの最大値
-                min: 0,        //グラフの最小値
-                ticks: {
-                  stepSize: 3  //目盛間隔
+                pointLabels: {
+                  font: {
+                    size: 24,
+                    // color: black,
+                  }
                 }
               }
-            },
+            }
           }
         });
       }

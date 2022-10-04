@@ -12,7 +12,7 @@
 
     <!-- <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12"> -->
       <div class="overflow-hiddn shadow-sm sm:rounded-lg">
-        <div class="border-b border-gray-200">
+        <div class="create_main_content">
           <form action="{{ route('user.item.store') }}" method="POST">
             @csrf
             <div>
@@ -118,7 +118,7 @@
     <!-- </div> -->
   </div>
   <div id="ytPlayer" data-property="{
-    videoURL: 'https://youtu.be/JouMAHQXx-g',
+    videoURL: 'https://www.youtube.com/watch?v=6TDvzv6mQic',
     autoPlay: true,
     loop: 1,
     mute: true,
@@ -532,10 +532,14 @@
             }]
           },
           options: {
-            legend: {
-              labels: {
-                  // This more specific font property overrides the global property
-                  fontColor: 'black'
+            scales: {
+              r: {
+                pointLabels: {
+                  font: {
+                    size: 24,
+                    // color: black,
+                  }
+                }
               }
             }
           }

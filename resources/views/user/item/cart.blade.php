@@ -7,7 +7,7 @@
 
 <x-app-layout>
   
-  <div class="py-12">
+  <div class="py-12 cart_main_content">
     <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
       <div class="main_content">
       @if (count($items) == false) 
@@ -67,7 +67,7 @@
     </div>
   </div>
   <div id="ytPlayer" data-property="{
-    videoURL: 'https://youtu.be/JouMAHQXx-g',
+    videoURL: 'https://www.youtube.com/watch?v=6TDvzv6mQic',
     autoPlay: true,
     loop: 1,
     mute: true,

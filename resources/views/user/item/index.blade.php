@@ -16,7 +16,7 @@
         @else
 
           <!-- 作成済の商品を作成-->
-          <div>
+          <div class="index_main_content">
             @foreach ($items as $item)
               <div class="item_box">
                 <div class="item_discription">
@@ -67,7 +67,7 @@
     </div>
   </div>
   <div id="ytPlayer" data-property="{
-    videoURL: 'https://youtu.be/JouMAHQXx-g',
+    videoURL: 'https://www.youtube.com/watch?v=6TDvzv6mQic',
     autoPlay: true,
     loop: 1,
     mute: true,
