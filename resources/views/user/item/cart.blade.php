@@ -24,7 +24,7 @@
                   <p>リラックス{{ $item->relax }}</p>
                   <p>炎症鎮痛{{ $item->inflammation }}</p>
                   <p>精神作用{{ $item->paschoactive }}</p>
-                  <p>頭痛{{ $item->vitality }}</p>
+                  <p>集中力{{ $item->vitality }}</p>
                   <p>入眠{{ $item->headache }}</p>
                   <p>頭痛{{ $item->insomnia }}</p>
                   <!-- <p>

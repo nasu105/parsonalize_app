@@ -91,7 +91,7 @@
         window.myChart = new Chart(ctx, { // インスタンスをグローバル変数で作成
           type: 'radar',
           data: {
-            labels: ["リラックス", "炎症鎮痛", "精神作用", "活力", "頭痛", "不眠"],
+            labels: ["リラックス", "炎症鎮痛", "精神作用", "集中力", "頭痛", "不眠"],
             datasets: [{
               label: "パラメーター値",
               data: [parameter_array[0],

@@ -12,6 +12,7 @@
 
 img {
 	max-width:100%;
+    /* width: 960px; */
 	height: auto;/*高さ自動*/
 }
 a {

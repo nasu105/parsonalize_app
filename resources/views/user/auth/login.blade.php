@@ -3,7 +3,7 @@
         <!-- ユーザー用 -->
         <x-slot name="logo">
             <!-- <div class="w-8"> -->
-                <a href="/user">
+                <a href="">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>
             <!-- </div> -->

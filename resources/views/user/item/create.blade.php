@@ -20,7 +20,7 @@
 
               <!-- パラメーター -->
               <div class="flex justify-center">
-              <div class="mixing_content">
+                <div class="mixing_content">
                   <div class="relax_content">
                     <label for="relax">リラックス</label>
                     <p>
@@ -104,7 +104,7 @@
 
 
                 <!-- グラフ -->
-                <div class="w-full mt-6 mr-3">
+                <div class="w-full mt-6 mr-3" style="position:relative;width:750px;height:750px;">
                   <canvas id="myChart"></canvas>
                 </div>
               </div>
@@ -328,7 +328,7 @@
           paschoactive_num += 1;
           $('#paschoactive').val(paschoactive_num);
           newChert();
-        } else if (vitality_plus_button && headache_num > 0) { // 活力プラスボタン押した時
+        } else if (vitality_plus_button && headache_num > 0) { // 集中力プラスボタン押した時
           headache_num -= 1;
           $('#headache').val(headache_num);
           vitality_num += 1;
@@ -463,7 +463,7 @@
           $('#headache').val(parameter_array[3]);
           $('#insomnia').val(parameter_array[4]);
           newChert();
-        } else if (vitality_sub_button && vitality_num > 0) { // 活力マイナスボタン押した時
+        } else if (vitality_sub_button && vitality_num > 0) { // 集中力マイナスボタン押した時
           vitality_num -= 1;
           $('#vitality').val(vitality_num);
           parameter_array.splice(3, 1);
@@ -517,7 +517,7 @@
         window.myChart = new Chart(ctx, { // インスタンスをグローバル変数で作成
           type: 'radar',
           data: {
-            labels: ["リラックス", "炎症鎮痛", "精神作用", "活力", "頭痛", "入眠"],
+            labels: ["リラックス", "炎症鎮痛", "精神作用", "集中力", "頭痛", "入眠"],
             datasets: [{
               label: "パラメーター値",
               data: [ctx_parameter_array[0],
