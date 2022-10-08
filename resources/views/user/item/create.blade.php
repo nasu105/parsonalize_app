@@ -8,10 +8,10 @@
 
 <x-app-layout>
 
-  <div class="py-0">
+  <div class="whole_screen">
 
     <!-- <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12"> -->
-      <div class="overflow-hiddn shadow-sm sm:rounded-lg">
+      <div class="overflow-hiddn sm:rounded-lg">
         <div class="create_main_content">
           <form action="{{ route('user.item.store') }}" method="POST">
             @csrf
@@ -24,8 +24,8 @@
                   <div class="relax_content">
                     <label for="relax">リラックス</label>
                     <p>
-                      <input type="number" id="relax" name="relax" class="sm:rounded-lg" data-min="0" data-max="18"
-                        value="3" readonly>
+                      <input type="number" id="relax" name="relax" class="sm:rounded-lg" data-min="0" data-max="42"
+                        value="7" readonly>
                     </p>
                     <p>
                       <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".relax"
@@ -38,7 +38,7 @@
                     <label for="inflammation">炎症鎮痛</label>
                     <p>
                       <input type="number" id="inflammation" name="inflammation" class="sm:rounded-lg" data-min="0"
-                        data-max="18" value="3" readonly>
+                        data-max="42" value="7" readonly>
                     </p>
                     <p>
                       <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".inflammation"
@@ -51,7 +51,7 @@
                     <label for="paschoactive">精神作用</label>
                     <p>
                       <input type="number" id="paschoactive" name="paschoactive" class="sm:rounded-lg" data-min="0"
-                        data-max="18" value="3" readonly>
+                        data-max="42" value="7" readonly>
                     </p>
                     <p>
                       <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".paschoactive"
@@ -64,7 +64,7 @@
                     <label for="vitality">集中力</label>
                     <p>
                       <input type="number" id="vitality" name="vitality" class="sm:rounded-lg" data-min="0"
-                        data-max="18" value="3" readonly>
+                        data-max="42" value="7" readonly>
                     </p>
                     <p>
                       <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".vitality"
@@ -77,7 +77,7 @@
                     <label for="headache">頭痛</label>
                     <p>
                       <input type="number" id="headache" name="headache" class="sm:rounded-lg" data-min="0"
-                        data-max="18" value="3" readonly>
+                        data-max="42" value="7" readonly>
                     </p>
                     <p>
                       <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".headache"
@@ -90,7 +90,7 @@
                     <label for="insomnia">入眠</label>
                     <p>
                       <input type="number" id="insomnia" name="insomnia" class="sm:rounded-lg" data-min="0"
-                        data-max="18" value="3" readonly>
+                        data-max="42" value="7" readonly>
                     </p>
                     <p>
                       <input type="button" value="+" class="btnspinner" data-cal="1" data-target=".insomnia"
@@ -104,8 +104,16 @@
 
 
                 <!-- グラフ -->
-                <div class="w-full mt-6 mr-3" style="position:relative;width:750px;height:750px;">
+                <div class="mt-6 mr-3" style="position:relative;width:750px;height:750px;">
                   <canvas id="myChart"></canvas>
+                </div>
+                <div class="mini_chart">
+                  <div class="mt-6 mr-3" style="position:relative;width:325px;height:325px;">
+                    <canvas id="myChart_polarArea"></canvas>
+                  </div>
+                  <div class="mt-6 mr-3" style="position:relative;width:325px;height:325px;">
+                    <canvas id="myChart_bar"></canvas>
+                  </div>
                 </div>
               </div>
             </div>
@@ -166,9 +174,10 @@
           //インターバル未実行中 + 長押しのイベントタイプスタンプ一致時に計算処理
           if (!arySpinnerCtrl['interval'] && arySpinnerCtrl['timestamp'] == e.timeStamp) {
             // すでに(インスタンス)が生成されている場合は、グラフを破棄する
-            if (myChart) {
-              myChart.destroy();
-            }
+            newChert();
+            // if (myChart) {
+            //   myChart.destroy();
+            // }
             arySpinnerCtrl['interval'] = setInterval(spinnerCal, spin_speed);
           }
         }, 500);
@@ -510,7 +519,8 @@
       }
 
       // グラフ作成(chartjs)
-      function drawChart() {
+
+      function drawChart() { // レーダーチャート
         // Chart.defaults.default.fontcolor = 'red';
         // Chart.defaults.global.defaultFontColor = 'red';
         let ctx = document.getElementById("myChart");
@@ -543,17 +553,96 @@
               }
             }
           }
-          // options: {
-            // scales: {
-            //   r: {
-            //     max: 18,        //グラフの最大値
-            //     min: 0,        //グラフの最小値
-            //     ticks: {
-            //       stepSize: 6  //目盛間隔
-            //     }
-            //   }
-            // },
-          // }
+        });
+
+        // ポーラーチャート
+        let ctx1 = document.getElementById("myChart_polarArea");
+        window.myChart_polarArea = new Chart(ctx1, {
+          type: 'polarArea',
+          data: {
+            labels: ["リラックス", "炎症鎮痛", "精神作用", "集中力", "頭痛", "入眠"], //データ項目のラベル
+            datasets: [{
+              backgroundColor: [
+                "#ff7f7f",
+                "#ff7fff",
+                "#7f7fff",
+                "#7fffff",
+                "#7fff7f",
+                "#ffff7f",
+              ],
+              data: [
+                ctx_parameter_array[0],
+                ctx_parameter_array[1],
+                ctx_parameter_array[2],
+                ctx_parameter_array[3],
+                ctx_parameter_array[4],
+                ctx_parameter_array[5],
+              ], //グラフのデータ
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              //グラフタイトル
+              text: 'オーダーメイド'
+            }
+          }
+        });
+
+        // 棒グラフ
+        let ctx2 = document.getElementById("myChart_bar"); 
+        window.myChart_bar = new Chart(ctx2, {
+          type: 'bar',
+          data: {
+          //凡例のラベル
+            labels: ['オーダーメイド'],
+            datasets: [
+              {
+                label: 'リラックス', //データ項目のラベル
+                data: [ctx_parameter_array[0]], //グラフのデータ
+                backgroundColor: "rgba(255,127,127,0.5)"
+              },{
+                label: '炎症鎮痛', //データ項目のラベル
+                data: [ctx_parameter_array[1]], //グラフのデータ
+                backgroundColor: "rgba(255,127,255,0.5)"
+              },{
+                label: '精神作用', //データ項目のラベル
+                data: [ctx_parameter_array[2]], //グラフのデータ
+                backgroundColor: "rgba(127,127,255,0.5)"
+              },{
+                label: '集中力', //データ項目のラベル
+                data: [ctx_parameter_array[3]], //グラフのデータ
+                backgroundColor: "rgba(127,255,255,0.5)"
+              },{
+                label: '頭痛', //データ項目のラベル
+                data: [ctx_parameter_array[4]], //グラフのデータ
+                backgroundColor: "rgba(127,255,127,0.5)"
+              },{
+                label: '入眠', //データ項目のラベル
+                data: [ctx_parameter_array[5]], //グラフのデータ
+                backgroundColor: "rgba(255,255,127,0.5)"
+              },
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              // maintainAspectRatio: false,
+              //グラフタイトル
+              text: 'オーダーメイド'
+            },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  suggestedMax: 42, //最大値
+                  suggestedMin: 0, //最小値
+                  stepSize: 3, //縦ラベルの数値単位
+                  }
+              }]
+            },
+          }
         });
       }
 
@@ -570,6 +659,179 @@
         return index;
       }
 
+
+      //////////////////////////////////////////////////////////////////
+
+      /* function drawChart() { // 円グラフ
+        let ctx = document.getElementById("myChart");
+        window.myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ["リラックス", "炎症鎮痛", "精神作用", "集中力", "頭痛", "入眠"], //データ項目のラベル
+            datasets: [{
+              backgroundColor: [
+                "#ff7f7f",
+                "#ff7fff",
+                "#7f7fff",
+                "#7fffff",
+                "#7fff7f",
+                "#ffff7f",
+              ],
+              data: [
+                ctx_parameter_array[0],
+                ctx_parameter_array[1],
+                ctx_parameter_array[2],
+                ctx_parameter_array[3],
+                ctx_parameter_array[4],
+                ctx_parameter_array[5],
+              ], //グラフのデータ
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              //グラフタイトル
+              text: 'オーダーメイド'
+            }
+          }
+        });
+      } */
+
+      //////////////////////////////////////////////////////////////////
+
+      /* function drawChart() { // ポーラーチャート
+        let ctx = document.getElementById("myChart_polarArea");
+        window.myChart = new Chart(ctx, {
+          type: 'polarArea',
+          data: {
+            labels: ["リラックス", "炎症鎮痛", "精神作用", "集中力", "頭痛", "入眠"], //データ項目のラベル
+            datasets: [{
+              backgroundColor: [
+                "#ff7f7f",
+                "#ff7fff",
+                "#7f7fff",
+                "#7fffff",
+                "#7fff7f",
+                "#ffff7f",
+              ],
+              data: [
+                ctx_parameter_array[0],
+                ctx_parameter_array[1],
+                ctx_parameter_array[2],
+                ctx_parameter_array[3],
+                ctx_parameter_array[4],
+                ctx_parameter_array[5],
+              ], //グラフのデータ
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              //グラフタイトル
+              text: 'オーダーメイド'
+            }
+          }
+        });
+      } */
+
+      //////////////////////////////////////////////////////////////////
+
+      
+      /* function drawChart() { // 棒グラフ
+        let ctx2 = document.getElementById("myChart_bar");
+        window.myChart_bar = new Chart(ctx2, {
+          type: 'bar',
+          data: {
+          //凡例のラベル
+            labels: ['オーダーメイド'],
+            datasets: [
+              {
+                label: 'リラックス', //データ項目のラベル
+                data: [ctx_parameter_array[0]], //グラフのデータ
+                backgroundColor: "rgba(255,127,127,0.5)"
+              },{
+                label: '炎症鎮痛', //データ項目のラベル
+                data: [ctx_parameter_array[1]], //グラフのデータ
+                backgroundColor: "rgba(255,127,255,0.5)"
+              },{
+                label: '精神作用', //データ項目のラベル
+                data: [ctx_parameter_array[2]], //グラフのデータ
+                backgroundColor: "rgba(127,127,255,0.5)"
+              },{
+                label: '集中力', //データ項目のラベル
+                data: [ctx_parameter_array[3]], //グラフのデータ
+                backgroundColor: "rgba(127,255,255,0.5)"
+              },{
+                label: '頭痛', //データ項目のラベル
+                data: [ctx_parameter_array[4]], //グラフのデータ
+                backgroundColor: "rgba(127,255,127,0.5)"
+              },{
+                label: '入眠', //データ項目のラベル
+                data: [ctx_parameter_array[5]], //グラフのデータ
+                backgroundColor: "rgba(255,255,127,0.5)"
+              },
+            ]
+          },
+          options: {
+            title: {
+              display: true,
+              //グラフタイトル
+              text: 'オーダーメイド'
+            },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  suggestedMax: 42, //最大値
+                  suggestedMin: 0, //最小値
+                  stepSize: 3, //縦ラベルの数値単位
+                  }
+              }]
+            },
+          }
+        });
+      } */
+
+      //////////////////////////////////////////////////////////////////
+
+      /* function drawChart() { // ドーナツチャート
+        let ctx = document.getElementById("myChart");
+        window.myChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ["リラックス", "炎症鎮痛", "精神作用", "集中力", "頭痛", "入眠"], //データ項目のラベル
+            datasets: [{
+              backgroundColor: [
+                "#ff7f7f",
+                "#ff7fff",
+                "#7f7fff",
+                "#7fffff",
+                "#7fff7f",
+                "#ffff7f",
+              ],
+              data: [
+                ctx_parameter_array[0],
+                ctx_parameter_array[1],
+                ctx_parameter_array[2],
+                ctx_parameter_array[3],
+                ctx_parameter_array[4],
+                ctx_parameter_array[5],
+              ], //グラフのデータ
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              //グラフタイトル
+              text: 'オーダーメイド'
+            }
+          }
+        });
+      } */
+
+      //////////////////////////////////////////////////////////////////
+
+
+
       // chatdataに渡す値を格納
       function getParameter() {
         ctx_parameter_array[0] = Number($("#relax").val());
@@ -585,6 +847,13 @@
         if (myChart) {
           myChart.destroy();
         }
+        if (myChart_polarArea) {
+          myChart_polarArea.destroy();
+        }
+        if (myChart_bar) {
+          myChart_bar.destroy();
+        }
+
         getParameter();
         drawChart();
 

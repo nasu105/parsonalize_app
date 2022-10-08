@@ -1,17 +1,22 @@
 .buy_main_content {
     display: flex;
-    background-color: rgba(255, 255, 255, 0.8);
-	transform: scale(0.7, 0.7);
+	/* transform: scale(0.7, 0.7); */
+}
+
+.YTPOverlay {
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 .main_box {
-    margin-left: 15%;
+    margin-left: 10%;
     margin-top: 10%;
+    margin-right: 5%;
 }
 
 .main_content {
-    width: 300px;
-    padding-top: 10%;
+    /* width: 300px; */
+    /* padding-top: 10%; */
+    padding: 12px 12px 12px 12px;
     text-align: center;
     border-top: solid 3px #060606;
     border-right: solid 3px #060606;
@@ -62,11 +67,22 @@ p {
     font-size:18px;
 }
 
+.myChart {
+    margin-left: 5%;
+}
+
 .chart {
     position: absolute;
-    left: 20%;
+    margin-left: 5%;
     right: 0;
     /* margin: auto; */
+}
+
+.mini_chart {
+    margin-left: 3%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 /* .price_content_buttons {
@@ -129,7 +145,7 @@ p {
 } */
 
 .cart_button {
-    --color: #00A97F;
+    /* --color: #065e48;
     padding: 0.8em 1.7em;
     background-color: transparent;
     border-radius: .3em;
@@ -138,6 +154,21 @@ p {
     cursor: pointer;
     transition: .5s;
     font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1; */
+    --color: #065e48;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 700;
     font-size: 17px;
     border: 1px solid;
     font-family: inherit;

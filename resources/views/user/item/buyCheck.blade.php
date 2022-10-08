@@ -43,11 +43,22 @@
                 </form>
               </div>
             </div>
-            <div class="w-full mt-6 mr-3 text-center">
+            <div class="mt-6 mr-3">
               <div style="position:relative;width:700px;height:700px;" class="chart">
                 <canvas id="myChart"></canvas>
               </div>
             </div>
+            
+            <div  class="mini_chart">
+              <div style="position:relative;width:300px;height:300px;" class="chart">
+                <canvas id="myChart_polarArea"></canvas>
+              </div>
+              <div style="position:relative;width:300px;height:300px;" class="chart">
+                <canvas id="myChart_bar"></canvas>
+              </div>
+            </div>
+            
+
           </div>
         <!-- </div>
       </div> -->
@@ -118,6 +129,96 @@
             }
           }
         });
+
+        // ポーラーチャート
+        let ctx1 = document.getElementById("myChart_polarArea");
+        window.myChart_polarArea = new Chart(ctx1, {
+          type: 'polarArea',
+          data: {
+            labels: ["リラックス", "炎症鎮痛", "精神作用", "集中力", "頭痛", "入眠"], //データ項目のラベル
+            datasets: [{
+              backgroundColor: [
+                "#ff7f7f",
+                "#ff7fff",
+                "#7f7fff",
+                "#7fffff",
+                "#7fff7f",
+                "#ffff7f",
+              ],
+              data: [
+                parameter_array[0],
+                parameter_array[1],
+                parameter_array[2],
+                parameter_array[3],
+                parameter_array[4],
+                parameter_array[5],
+              ], //グラフのデータ
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              //グラフタイトル
+              text: 'オーダーメイド'
+            }
+          }
+        });
+
+        // 棒グラフ
+        let ctx2 = document.getElementById("myChart_bar"); 
+        window.myChart_bar = new Chart(ctx2, {
+          type: 'bar',
+          data: {
+          //凡例のラベル
+            labels: ['オーダーメイド'],
+            datasets: [
+              {
+                label: 'リラックス', //データ項目のラベル
+                data: [parameter_array[0]], //グラフのデータ
+                backgroundColor: "rgba(255,127,127,0.7)"
+              },{
+                label: '炎症鎮痛', //データ項目のラベル
+                data: [parameter_array[1]], //グラフのデータ
+                backgroundColor: "rgba(255,127,255,0.7)"
+              },{
+                label: '精神作用', //データ項目のラベル
+                data: [parameter_array[2]], //グラフのデータ
+                backgroundColor: "rgba(127,127,255,0.7)"
+              },{
+                label: '集中力', //データ項目のラベル
+                data: [parameter_array[3]], //グラフのデータ
+                backgroundColor: "rgba(127,255,255,0.7)"
+              },{
+                label: '頭痛', //データ項目のラベル
+                data: [parameter_array[4]], //グラフのデータ
+                backgroundColor: "rgba(127,255,127,0.7)"
+              },{
+                label: '入眠', //データ項目のラベル
+                data: [parameter_array[5]], //グラフのデータ
+                backgroundColor: "rgba(255,255,127,0.7)"
+              },
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              // maintainAspectRatio: false,
+              //グラフタイトル
+              text: 'オーダーメイド'
+            },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  suggestedMax: 42, //最大値
+                  suggestedMin: 0, //最小値
+                  stepSize: 3, //縦ラベルの数値単位
+                  }
+              }]
+            },
+          }
+        });
       }
 
       function mixing_percent() { // 調合結果を作成
@@ -152,10 +253,10 @@
           multiplier_insomnia_array.push(model_paschoactive_array[i] * parameter_array[5]);
         }
 
-        result_array[0] += Math.round((multiplier_relax_array[0] + multiplier_inflammation_array[0] + multiplier_paschoactive_array[0] + multiplier_vitality_array[0] + multiplier_headach_array[0] + multiplier_insomnia_array[0]) / 18);
-        result_array[1] += Math.round((multiplier_relax_array[1] + multiplier_inflammation_array[1] + multiplier_paschoactive_array[1] + multiplier_vitality_array[1] + multiplier_headach_array[1] + multiplier_insomnia_array[1]) / 18);
-        result_array[2] += Math.round((multiplier_relax_array[2] + multiplier_inflammation_array[2] + multiplier_paschoactive_array[2] + multiplier_vitality_array[2] + multiplier_headach_array[2] + multiplier_insomnia_array[2]) / 18);
-        result_array[3] += Math.round((multiplier_relax_array[3] + multiplier_inflammation_array[3] + multiplier_paschoactive_array[3] + multiplier_vitality_array[3] + multiplier_headach_array[3] + multiplier_insomnia_array[3]) / 18);
+        result_array[0] += Math.round((multiplier_relax_array[0] + multiplier_inflammation_array[0] + multiplier_paschoactive_array[0] + multiplier_vitality_array[0] + multiplier_headach_array[0] + multiplier_insomnia_array[0]) / 42);
+        result_array[1] += Math.round((multiplier_relax_array[1] + multiplier_inflammation_array[1] + multiplier_paschoactive_array[1] + multiplier_vitality_array[1] + multiplier_headach_array[1] + multiplier_insomnia_array[1]) / 42);
+        result_array[2] += Math.round((multiplier_relax_array[2] + multiplier_inflammation_array[2] + multiplier_paschoactive_array[2] + multiplier_vitality_array[2] + multiplier_headach_array[2] + multiplier_insomnia_array[2]) / 42);
+        result_array[3] += Math.round((multiplier_relax_array[3] + multiplier_inflammation_array[3] + multiplier_paschoactive_array[3] + multiplier_vitality_array[3] + multiplier_headach_array[3] + multiplier_insomnia_array[3]) / 42);
         result_array[4] += 100 - (result_array[0] + result_array[1] + result_array[2] + result_array[3]);
 
       }

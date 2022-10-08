@@ -3,6 +3,10 @@
 	/* transform: scale(0.7, 0.7); */
 }
 
+.YTPOverlay {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
 .star-form {
   display: flex;
   flex-direction: row-reverse;
