@@ -1,0 +1,36 @@
+.main {
+  width: 600px;
+  padding: 1rem 2rem;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+  margin-right: 100px;
+  margin-bottom: 30px;
+}
+
+.main_info {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 24px;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+.order_id {
+  font-weight: 600;
+}
+
+/* .button_form {
+  display: flex;
+  justify-content: space-evenly;
+} */
+
+/* .item_box {
+  width: 450px;
+  padding: 1rem 2rem;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+  margin-right: 100px;
+  margin-bottom: 30px;
+} */
